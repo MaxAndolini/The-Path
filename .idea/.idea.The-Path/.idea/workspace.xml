@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Scene.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Scene/Demo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Scene/Demo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/background_obj.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/background_obj.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/decorative_obj.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/decorative_obj.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/mainlevbuild.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/Sliced/mainlevbuild.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/background_obj.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/background_obj.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_day3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/bakcground_night3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/decorative_obj.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/decorative_obj.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/mainlevbuild.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/PF SET1/mainlevbuild.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Scenes.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Scenes/Demo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Scenes/Demo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/mainlev_build.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/mainlev_build.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/props1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/props1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/props2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/Sliced/props2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background3.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background3.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background4a.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background4a.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background4b.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/background4b.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/mainlev_build.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/mainlev_build.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/props1.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/props1.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/props2.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Pixel Fantasy Caves/props2.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Attack.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Attack.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Croush.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Croush.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash NoDust.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash NoDust.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash-Attack NoDust.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash-Attack NoDust.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash-Attack.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash-Attack.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Dash.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Death NoEffect.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Death NoEffect.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Death.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Death.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Edge-Grab.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Edge-Grab.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Edge-Idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Edge-Idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Fall.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Fall.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Hurt NoEffect.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Hurt NoEffect.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Hurt.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Hurt.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Idle.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Idle.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/JumptoFall.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/JumptoFall.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Ladder.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Ladder.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Run.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Run.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Slide.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Slide.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Wall-Slide.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Wall-Slide.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/WallSlide NoDust.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/WallSlide NoDust.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Warrior.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/Warrior.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/jump.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Aniamtion/jump.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Contact.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Contact.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Demo.unity" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Demo.unity.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/License.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/License.txt.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Sprite Sheet.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Sprite Sheet/Warrior_Sheet-Effect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Sprite Sheet/Warrior_Sheet-Effect.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Sprite Sheet/Warrior_SheetnoEffect.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Warrior free set/Sprite Sheet/Warrior_SheetnoEffect.png.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Packages/packages-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Packages/packages-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/QualitySettings.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectId" id="28FByMKmYbi1H5fcZTHfXYb5JDF" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Discover.Launch.Via.Unity" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.detected.package.tslint" value="true" />
+    <property name="node.js.path.for.package.eslint" value="project" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RunManager" selected="Attach to Unity Editor.Attach to Unity Editor">
+    <configuration name="Attach to Unity Editor &amp; Play" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="UNITY_ATTACH_AND_PLAY" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+    <configuration name="Attach to Unity Editor" type="UNITY_DEBUG_RUN_CONFIGURATION" factoryName="Unity Debug" show_console_on_std_err="false" show_console_on_std_out="false" port="50000" address="localhost">
+      <option name="allowRunningInParallel" value="false" />
+      <option name="listenPortForConnections" value="false" />
+      <option name="pid" />
+      <option name="selectedOptions">
+        <set />
+      </option>
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="" />
+      <created>1650802712064</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1650802712064</updated>
+      <workItem from="1650802732882" duration="10000" />
+      <workItem from="1650802802391" duration="2692000" />
+      <workItem from="1650807382759" duration="2138000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnityProjectConfiguration" hasMinimizedUI="true" />
+  <component name="UnityUnitTestConfiguration" currentTestLauncher="EditMode" />
+  <component name="VcsManagerConfiguration">
+    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+</project>
