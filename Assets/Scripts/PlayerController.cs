@@ -19,7 +19,9 @@ public class PlayerController : MonoBehaviour
     private bool isRunning;
     private bool isGrounded;
     private bool canJump;
-    
+    private bool isCrouching = false;
+    private bool isSliding = false;
+
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -28,8 +30,17 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 15.0f;
     public float jumpForce = 16.0f; //In rigidbody2d, we changed gravity scale with 4 for better jump experience.
     public float groundCheckRadius;
+    public float slideSpeed = 1000f;
+    public float maxSlideTime = 1.5f;
+    
     
     public Transform groundCheck;
+    
+    
+    
+    public BoxCollider2D regularColl;
+    public BoxCollider2D crouchColl;
+    public BoxCollider2D slideColl;
 
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
 
@@ -89,10 +100,12 @@ public class PlayerController : MonoBehaviour
     {
         moveDirection = Input.GetAxisRaw("Horizontal");
 
+        //FOR JUMP
         if (Input.GetButtonDown("Jump"))
         {
             Jump();
         }
+<<<<<<< Updated upstream
 
         if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && inventory[0] != null)
         {
@@ -118,6 +131,70 @@ public class PlayerController : MonoBehaviour
         {
             inventory[5].Use();
         }
+=======
+        
+        //FOR SLIDING
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Slide();
+        }
+
+        //FOR CROUCH
+        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
+        {
+            Crouch();
+        }
+        else if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && isGrounded)
+        {
+            isCrouching = false;
+            anim.Play("Idle");
+            anim.SetBool("isCrouching",false);
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+            regularColl.enabled = true;
+            crouchColl.enabled = false;
+        }
+        
+    }
+
+    private void Slide()
+    {
+        isSliding = true;
+        anim.SetBool("isSlide", true);
+
+        regularColl.enabled = false;
+        slideColl.enabled = true;
+      
+
+        if (!isFacingRight) 
+        {
+            rb.AddForce(Vector2.right * slideSpeed);
+        }
+        else
+        {
+            rb.AddForce(Vector2.left * slideSpeed);
+        }
+
+        StartCoroutine("stopSlide");
+    }
+    
+    IEnumerator stopSlide()
+    {
+        yield return new WaitForSeconds(maxSlideTime);
+        anim.Play("Idle");
+        anim.SetBool("isSlide",false);
+        regularColl.enabled = true;
+        slideColl.enabled = false;
+        isSliding = false;
+    }
+    private void Crouch()
+    {
+        isCrouching = true;
+        anim.SetBool("isCrouching", true);
+        
+        regularColl.enabled = false;
+        crouchColl.enabled = true;
+        rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
+>>>>>>> Stashed changes
     }
 
     private void CheckJump() //Prevents the character from jumping infinitely.
@@ -165,7 +242,7 @@ public class PlayerController : MonoBehaviour
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f,180.0f,0.0f);
     }
-
+    
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
