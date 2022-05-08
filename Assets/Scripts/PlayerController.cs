@@ -105,7 +105,6 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
-<<<<<<< Updated upstream
 
         if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && inventory[0] != null)
         {
@@ -131,8 +130,7 @@ public class PlayerController : MonoBehaviour
         {
             inventory[5].Use();
         }
-=======
-        
+
         //FOR SLIDING
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -194,7 +192,6 @@ public class PlayerController : MonoBehaviour
         regularColl.enabled = false;
         crouchColl.enabled = true;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
->>>>>>> Stashed changes
     }
 
     private void CheckJump() //Prevents the character from jumping infinitely.
