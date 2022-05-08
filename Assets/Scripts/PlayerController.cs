@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     //NOTES FROM INTERFACE:
     //In materials folder I use Physics Material 2D to prevent the character from Sticking to the wall. I reduce the friction to 0.
     
+    [Header ("Karakter")]
     private float moveDirection; // which direction player move (1,0,-1)
 
     private int amountOfJumpsLeft;
@@ -30,6 +32,11 @@ public class PlayerController : MonoBehaviour
     public Transform groundCheck;
 
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
+
+    [Space]
+    [Header ("Envanter")]
+    public Slot[] inventory;
+    
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -86,6 +93,31 @@ public class PlayerController : MonoBehaviour
         {
             Jump();
         }
+
+        if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && inventory[0] != null)
+        {
+            inventory[0].Use();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) && inventory[1] != null)
+        {
+            inventory[1].Use();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) && inventory[2] != null)
+        {
+            inventory[2].Use();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4)) && inventory[3] != null)
+        {
+            inventory[3].Use();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5)) && inventory[4] != null)
+        {
+            inventory[4].Use();
+        }
+        else if ((Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6)) && inventory[5] != null)
+        {
+            inventory[5].Use();
+        }
     }
 
     private void CheckJump() //Prevents the character from jumping infinitely.
@@ -137,5 +169,23 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
+    public void AddInventory(GameObject gameObj, Item item)
+    {
+        foreach (var i in inventory)
+        {
+            if (!i.isEmpty) continue;
+            //i.itemImage.gameObject.GetComponent<Transform>().position
+            
+            /*Sequence animationSequence = DOTween.Sequence();
+            animationSequence.Append(gameObj.transform.DOMove(i.itemImage.gameObject.transform.position, 4f)).
+                SetEase(Ease.OutSine)
+                .OnComplete(() => {
+                    Destroy(gameObj);
+                    i.Set(item);
+                });*/
+            break;
+        }
     }
 }
