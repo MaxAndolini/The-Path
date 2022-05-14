@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -45,6 +46,11 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
 
     [Space]
+    [Header ("Altın")]
+    public Text goldText;
+    public int gold;
+
+    [Space]
     [Header ("Envanter")]
     public Slot[] inventory;
     
@@ -53,6 +59,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
+        goldText.text = gold.ToString();
     }
 
    
@@ -245,6 +252,12 @@ public class PlayerController : MonoBehaviour
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
+    public void AddGold()
+    {
+        gold++;
+        goldText.text = gold.ToString();
+    }
+
     public void AddInventory(GameObject gameObj, Item item)
     {
         foreach (var i in inventory)
@@ -262,4 +275,26 @@ public class PlayerController : MonoBehaviour
             break;
         }
     }
+    
+        private void OnTriggerEnter2D(Collider2D col)
+        {
+            if (col.CompareTag("Gold"))
+            {
+                var gold = GameObject.Find("GoldImage");
+                var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
+                    gold.transform.rotation,
+                    gold.transform);
+                Destroy(col.gameObject);
+                animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
+                    .OnComplete(() =>
+                    {
+                        Destroy(animGameObject);
+                        AddGold();
+                    });
+            }
+            else  if (col.CompareTag("Trampoline"))
+            {
+                rb.velocity = Vector2.up * 30;
+            }
+        }
 }
