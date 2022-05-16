@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public float groundCheckRadius;
     public float slideSpeed = 1000f;
     public float maxSlideTime = 1.5f;
+    public float trampolinSpeed = 35.0f;
     
     
     public Transform groundCheck;
@@ -294,7 +295,7 @@ public class PlayerController : MonoBehaviour
             }
             else  if (col.CompareTag("Trampoline"))
             {
-                rb.velocity = Vector2.up * 30;
+                rb.velocity = Vector2.up * trampolinSpeed;
             }
         }
 }
