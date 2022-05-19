@@ -17,10 +17,21 @@
           </e>
           <e p="readme.txt" t="Include" />
         </e>
+        <e p="Parallax.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Item.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="Slot.cs" t="Include" />
+        </e>
+        <e p="Sprites" t="Include">
+          <e p="Enemy" t="Include">
+            <e p="Enemy Galore 1 - Pixel Art" t="Include">
+              <e p="Read Me.txt" t="Include" />
+              <e p="Script" t="Include">
+                <e p="EnemyTest.cs" t="Include" />
+              </e>
+            </e>
+          </e>
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />
