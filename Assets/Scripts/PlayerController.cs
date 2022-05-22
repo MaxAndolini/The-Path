@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
     //NOTES FROM INTERFACE:
     //In materials folder I use Physics Material 2D to prevent the character from Sticking to the wall. I reduce the friction to 0.
     
-    [Header ("Karakter")]
+    [Header ("Character")]
     private float moveDirection; // which direction player move (1,0,-1)
 
     private int amountOfJumpsLeft;
@@ -37,9 +37,7 @@ public class PlayerController : MonoBehaviour
     
     
     public Transform groundCheck;
-    
-    
-    
+
     public BoxCollider2D regularColl;
     public BoxCollider2D crouchColl;
     public BoxCollider2D slideColl;
@@ -47,12 +45,17 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
 
     [Space]
-    [Header ("Altın")]
+    [Header("Hearth")]
+    public int currentHearth = 5;
+    public GameObject[] hearth;
+    
+    [Space]
+    [Header ("Gold")]
     public Text goldText;
     public int gold;
 
     [Space]
-    [Header ("Envanter")]
+    [Header ("Inventory")]
     public Slot[] inventory;
     
     void Start()
@@ -61,9 +64,9 @@ public class PlayerController : MonoBehaviour
         anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
         goldText.text = gold.ToString();
+        SetHealth(currentHearth);
     }
-
-   
+    
     void Update()
     {
         Inputs();
@@ -98,12 +101,12 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
     }
+    
     private void CheckSurroundings() //is for interacting with surrounding sth. (ex. Ground)
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround); //Checks if a Collider falls within a circular area.
     }
     
-
     private void Inputs() //all the inputs from the player
     {
         moveDirection = Input.GetAxisRaw("Horizontal");
@@ -114,6 +117,7 @@ public class PlayerController : MonoBehaviour
             Jump();
         }
 
+        //FOR INVENTORY
         if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && inventory[0] != null)
         {
             inventory[0].Use();
@@ -277,25 +281,62 @@ public class PlayerController : MonoBehaviour
         }
     }
     
-        private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.CompareTag("Gold"))
         {
-            if (col.CompareTag("Gold"))
-            {
-                var gold = GameObject.Find("GoldImage");
-                var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
-                    gold.transform.rotation,
-                    gold.transform);
-                Destroy(col.gameObject);
-                animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
-                    .OnComplete(() =>
-                    {
-                        Destroy(animGameObject);
-                        AddGold();
-                    });
-            }
-            else  if (col.CompareTag("Trampoline"))
-            {
-                rb.velocity = Vector2.up * trampolinSpeed;
-            }
+            var gold = GameObject.Find("GoldImage");
+            var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
+                gold.transform.rotation,
+                gold.transform);
+            Destroy(col.gameObject);
+            animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
+                .OnComplete(() =>
+                {
+                    Destroy(animGameObject);
+                    AddGold();
+                });
         }
+        else if (col.CompareTag("Trampoline"))
+        {
+            rb.velocity = Vector2.up * trampolinSpeed;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D col)
+    {
+        if (col.gameObject.CompareTag("Enemy"))
+        {
+            //Hurt Animation
+            var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            DOTween.Sequence()
+                .Append(spriteRenderer.DOColor(Color.red, 0.05f))
+                .Append(spriteRenderer.DOColor(Color.white, 0.7f));
+            
+            //Change Health
+            currentHearth--;
+            if (currentHearth >= 0) SetHealth(currentHearth);
+            else GameOver();
+        }
+    }
+
+    private void SetHealth(int h)
+    {
+        for (var i = 0; i < 5; i++)
+        {
+            hearth[i].SetActive(false);
+        }
+        
+        for (var i = 0; i < h; i++)
+        {
+            hearth[i].SetActive(true);
+        }
+
+        currentHearth = h;
+    }
+
+    private void GameOver()
+    {
+        Debug.Log("Game Over");
+    }
 }

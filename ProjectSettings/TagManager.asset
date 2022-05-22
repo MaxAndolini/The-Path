@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Gold
   - Trampoline
+  - Enemy
   layers:
   - Default
   - TransparentFX
