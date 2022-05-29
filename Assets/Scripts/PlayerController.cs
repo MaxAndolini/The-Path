@@ -23,6 +23,7 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private bool isSliding = false;
 
+    private GameObject player;
     private Rigidbody2D rb;
     private Animator anim;
 
@@ -60,8 +61,9 @@ public class PlayerController : MonoBehaviour
     
     void Start()
     {
+        player = gameObject.transform.GetChild(0).gameObject;
         rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
+        anim = player.GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
         goldText.text = gold.ToString();
         SetHealth(currentHearth);
@@ -308,7 +310,7 @@ public class PlayerController : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy"))
         {
             //Hurt Animation
-            var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+            var spriteRenderer = player.GetComponent<SpriteRenderer>();
             DOTween.Sequence()
                 .Append(spriteRenderer.DOColor(Color.red, 0.05f))
                 .Append(spriteRenderer.DOColor(Color.white, 0.7f));
