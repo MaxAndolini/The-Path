@@ -21,6 +21,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Idle");
         }
     }
+
     public void Animation_2_Run()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -29,6 +30,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Running");
         }
     }
+
     public void Animation_3_Hit()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -38,6 +40,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Hit");
         }
     }
+
     public void Animation_4_Death()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -47,6 +50,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Death");
         }
     }
+
     public void Animation_5_Ability()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -56,6 +60,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Ability");
         }
     }
+
     public void Animation_6_Attack()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -65,6 +70,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Attack");
         }
     }
+
     public void Animation_7_Attack2()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -74,6 +80,7 @@ public class EnemyTest : MonoBehaviour
             Debug.Log("Attack 2");
         }
     }
+
     public void Animation_8_Attack3()
     {
         for (int i = 0; i < EnemyAnims.Length; i++)
@@ -112,11 +119,11 @@ public class EnemyTest : MonoBehaviour
     //    }
     //    else if (Input.GetKeyDown(KeyCode.Alpha5))
     //    {
-            
+
     //        EnemyAnim.SetBool("Run", false);
     //        EnemyAnim.SetBool("Ability", true);
     //        Debug.Log("Ability");
-            
+
     //    }
     //    else if (Input.GetKeyDown(KeyCode.Alpha6))
     //    {

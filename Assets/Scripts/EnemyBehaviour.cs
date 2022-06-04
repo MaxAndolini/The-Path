@@ -7,6 +7,7 @@ public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 1f;
     private Rigidbody2D rb;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -15,17 +16,16 @@ public class EnemyBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (IsFacingRight())
         {
             //Move right
-            rb.velocity = new Vector2( moveSpeed,0f);
+            rb.velocity = new Vector2(moveSpeed, 0f);
         }
-        else 
+        else
         {
             //Move left
-            rb.velocity = new Vector2(-moveSpeed,0f);
-        } 
+            rb.velocity = new Vector2(-moveSpeed, 0f);
+        }
     }
 
     private bool IsFacingRight()
@@ -37,7 +37,5 @@ public class EnemyBehaviour : MonoBehaviour
     {
         //Turn
         transform.localScale = new Vector2(-(Mathf.Sign(rb.velocity.x) * 10), transform.localScale.y);
-        
-       
     }
 }

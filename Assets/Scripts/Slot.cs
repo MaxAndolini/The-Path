@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class Slot : MonoBehaviour
 {
     public Item item;
-    
+
     public Image itemImage;
     public bool isEmpty;
 
@@ -25,9 +25,9 @@ public class Slot : MonoBehaviour
     public void Use()
     {
         if (item == null) return;
-        
+
         Invoke(item.itemName, 0);
-            
+
         item = null;
         itemImage.enabled = false;
         isEmpty = true;

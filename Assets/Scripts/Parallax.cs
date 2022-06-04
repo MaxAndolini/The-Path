@@ -6,13 +6,15 @@ public class Parallax : MonoBehaviour
 {
     public float length, startpos;
     private GameObject _gamecam;
+
     public float parallaxEffect;
+
     // Start is called before the first frame update
     void Start()
     {
         startpos = transform.position.x;
         _gamecam = GameObject.Find("Player Camera");
-        length = GetComponent<SpriteRenderer>().bounds.size.x;   
+        length = GetComponent<SpriteRenderer>().bounds.size.x;
     }
 
 

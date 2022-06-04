@@ -10,9 +10,8 @@ public class PlayerController : MonoBehaviour
 {
     //NOTES FROM INTERFACE:
     //In materials folder I use Physics Material 2D to prevent the character from Sticking to the wall. I reduce the friction to 0.
-    
-    [Header ("Character")]
-    private float moveDirection; // which direction player move (1,0,-1)
+
+    [Header("Character")] private float moveDirection; // which direction player move (1,0,-1)
 
     private int amountOfJumpsLeft;
 
@@ -35,8 +34,8 @@ public class PlayerController : MonoBehaviour
     public float slideSpeed = 1000f;
     public float maxSlideTime = 1.5f;
     public float trampolinSpeed = 35.0f;
-    
-    
+
+
     public Transform groundCheck;
 
     public BoxCollider2D regularColl;
@@ -45,30 +44,25 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
 
-    [Space]
-    [Header("Hearth")]
-    public int currentHearth = 5;
+    [Space] [Header("Hearth")] public int currentHearth = 5;
     public GameObject[] hearth;
-    
-    [Space]
-    [Header ("Gold")]
-    public Text goldText;
+
+    [Space] [Header("Gold")] public Text goldText;
     public int gold;
 
-    [Space]
-    [Header ("Inventory")]
-    public Slot[] inventory;
-    
+    [Space] [Header("Inventory")] public Slot[] inventory;
+
     void Start()
     {
         player = gameObject.transform.GetChild(0).gameObject;
         rb = GetComponent<Rigidbody2D>();
         anim = player.GetComponent<Animator>();
-        amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
+        amountOfJumpsLeft =
+            amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
         goldText.text = gold.ToString();
         SetHealth(currentHearth);
     }
-    
+
     void Update()
     {
         Inputs();
@@ -94,6 +88,7 @@ public class PlayerController : MonoBehaviour
         {
             Flip();
         }
+
         if (Mathf.Abs(rb.velocity.x) >= 0.01f)
         {
             isRunning = true;
@@ -103,12 +98,14 @@ public class PlayerController : MonoBehaviour
             isRunning = false;
         }
     }
-    
+
     private void CheckSurroundings() //is for interacting with surrounding sth. (ex. Ground)
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround); //Checks if a Collider falls within a circular area.
+        isGrounded =
+            Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius,
+                whatIsGround); //Checks if a Collider falls within a circular area.
     }
-    
+
     private void Inputs() //all the inputs from the player
     {
         moveDirection = Input.GetAxisRaw("Horizontal");
@@ -160,12 +157,11 @@ public class PlayerController : MonoBehaviour
         {
             isCrouching = false;
             anim.Play("Idle");
-            anim.SetBool("isCrouching",false);
+            anim.SetBool("isCrouching", false);
             rb.constraints = RigidbodyConstraints2D.FreezeRotation;
             regularColl.enabled = true;
             crouchColl.enabled = false;
         }
-        
     }
 
     private void Slide()
@@ -175,9 +171,9 @@ public class PlayerController : MonoBehaviour
 
         regularColl.enabled = false;
         slideColl.enabled = true;
-      
 
-        if (!isFacingRight) 
+
+        if (!isFacingRight)
         {
             rb.AddForce(Vector2.right * slideSpeed);
         }
@@ -188,21 +184,22 @@ public class PlayerController : MonoBehaviour
 
         StartCoroutine("stopSlide");
     }
-    
+
     IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(maxSlideTime);
         anim.Play("Idle");
-        anim.SetBool("isSlide",false);
+        anim.SetBool("isSlide", false);
         regularColl.enabled = true;
         slideColl.enabled = false;
         isSliding = false;
     }
+
     private void Crouch()
     {
         isCrouching = true;
         anim.SetBool("isCrouching", true);
-        
+
         regularColl.enabled = false;
         crouchColl.enabled = true;
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
@@ -232,28 +229,28 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
         }
-        
     }
 
     private void Movement()
     {
-        rb.velocity = new Vector2(moveSpeed * moveDirection, rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
+        rb.velocity =
+            new Vector2(moveSpeed * moveDirection,
+                rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
     }
 
     private void Animations()
     {
         anim.SetBool("isRunning", isRunning);
-        anim.SetBool("isGrounded",isGrounded);
+        anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
-
     }
 
     private void Flip()
     {
         isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f,180.0f,0.0f);
+        transform.Rotate(0.0f, 180.0f, 0.0f);
     }
-    
+
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
@@ -271,7 +268,7 @@ public class PlayerController : MonoBehaviour
         {
             if (!i.isEmpty) continue;
             //i.itemImage.gameObject.GetComponent<Transform>().position
-            
+
             /*Sequence animationSequence = DOTween.Sequence();
             animationSequence.Append(gameObj.transform.DOMove(i.itemImage.gameObject.transform.position, 4f)).
                 SetEase(Ease.OutSine)
@@ -282,7 +279,7 @@ public class PlayerController : MonoBehaviour
             break;
         }
     }
-    
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag("Gold"))
@@ -314,7 +311,7 @@ public class PlayerController : MonoBehaviour
             DOTween.Sequence()
                 .Append(spriteRenderer.DOColor(Color.red, 0.05f))
                 .Append(spriteRenderer.DOColor(Color.white, 0.7f));
-            
+
             //Change Health
             currentHearth--;
             if (currentHearth >= 0) SetHealth(currentHearth);
@@ -328,7 +325,7 @@ public class PlayerController : MonoBehaviour
         {
             hearth[i].SetActive(false);
         }
-        
+
         for (var i = 0; i < h; i++)
         {
             hearth[i].SetActive(true);
