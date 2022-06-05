@@ -403,13 +403,18 @@ MonoBehaviour:
   slideSpeed: 1000
   maxSlideTime: 1.5
   trampolinSpeed: 38
+  wallCheckDistance: 0
+  wallSlideSpeed: 0
   groundCheck: {fileID: 1310512048066123659}
+  wallCheck: {fileID: 0}
   regularColl: {fileID: 1310512049374947478}
   crouchColl: {fileID: 1310512048727120872}
   slideColl: {fileID: 1310512048047050881}
   whatIsGround:
     serializedVersion: 2
     m_Bits: 64
+  currentHearth: 5
+  hearth: []
   goldText: {fileID: 0}
   gold: 0
   inventory:
