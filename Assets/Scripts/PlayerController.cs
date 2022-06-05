@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     [Header("Character")] private float moveDirection; // which direction player move (1,0,-1)
 
     private int amountOfJumpsLeft;
+    private int facingDirection = 1;
 
     private bool isFacingRight = true;
     private bool isRunning;
@@ -21,6 +22,8 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     private bool isCrouching = false;
     private bool isSliding = false;
+    private bool isTouchingWall;
+    private bool isWallSliding;
 
     private GameObject player;
     private Rigidbody2D rb;
@@ -34,9 +37,17 @@ public class PlayerController : MonoBehaviour
     public float slideSpeed = 1000f;
     public float maxSlideTime = 1.5f;
     public float trampolinSpeed = 35.0f;
+    public float wallCheckDistance;
+    public float wallSlideSpeed;
+    public float wallHopForce;
+    public float wallJumpForce;
+
+    public Vector2 wallHopDirection;
+    public Vector2 wallJumpDirection;
 
 
     public Transform groundCheck;
+    public Transform wallCheck;
 
     public BoxCollider2D regularColl;
     public BoxCollider2D crouchColl;
@@ -57,8 +68,9 @@ public class PlayerController : MonoBehaviour
         player = gameObject.transform.GetChild(0).gameObject;
         rb = GetComponent<Rigidbody2D>();
         anim = player.GetComponent<Animator>();
-        amountOfJumpsLeft =
-            amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
+        amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
+        wallHopDirection.Normalize();
+        wallJumpDirection.Normalize();
         goldText.text = gold.ToString();
         SetHealth(currentHearth);
     }
@@ -69,6 +81,7 @@ public class PlayerController : MonoBehaviour
         CheckMoveDirection();
         Animations();
         CheckJump();
+        CheckWallSliding();
     }
 
     private void FixedUpdate()
@@ -76,6 +89,20 @@ public class PlayerController : MonoBehaviour
         Movement();
         CheckSurroundings();
     }
+    
+    private void CheckWallSliding() //Wall sliding is true or not.
+    {
+        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
+        {
+            isWallSliding = true;
+        }
+        else
+        {
+            isWallSliding = false;
+        } 
+        //Wall Sliding speed part in the Movement() function. With this, character can slide the wall slow. 
+    }
+
 
     private void CheckMoveDirection()
     {
@@ -101,9 +128,8 @@ public class PlayerController : MonoBehaviour
 
     private void CheckSurroundings() //is for interacting with surrounding sth. (ex. Ground)
     {
-        isGrounded =
-            Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius,
-                whatIsGround); //Checks if a Collider falls within a circular area.
+        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround); //Checks if a Collider falls within a circular area.
+        isTouchingWall = Physics2D.Raycast(wallCheck.position,transform.right, wallCheckDistance,whatIsGround); //We can emit a beam from a raycast object in the direction and length we specify. Thus, we can detect which objects the beam we emit hits.
     }
 
     private void Inputs() //all the inputs from the player
@@ -207,7 +233,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckJump() //Prevents the character from jumping infinitely.
     {
-        if (isGrounded && rb.velocity.y <= 0.01f) //If the character interact with the ground or sth.
+        if ((isGrounded && rb.velocity.y <= 0.01f) || isWallSliding) //If the character interact with the ground or sth.
         {
             amountOfJumpsLeft = amountOfJumps;
         }
@@ -224,18 +250,45 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (canJump)
+        if (canJump && !isWallSliding)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
+        }
+        else if (isWallSliding && moveDirection == 0 && canJump) //wall Hop
+        {
+            isWallSliding = false;
+            amountOfJumpsLeft--;
+            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -facingDirection, wallHopForce * wallHopDirection.y);
+            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
+        } 
+        
+        else if ((isWallSliding || isTouchingWall) && moveDirection != 0 && canJump)
+        {
+            isWallSliding = false;
+            amountOfJumpsLeft--;
+            Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * moveDirection, wallJumpForce * wallJumpDirection.y);
+            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
         }
     }
 
     private void Movement()
     {
-        rb.velocity =
-            new Vector2(moveSpeed * moveDirection,
-                rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
+        if (isGrounded)
+        {
+            rb.velocity =
+                new Vector2(moveSpeed * moveDirection,
+                    rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
+        }
+        
+        
+        if (isWallSliding) //With this, character can slide the wall slow. 
+        {
+            if (rb.velocity.y < -wallSlideSpeed)
+            {
+                rb.velocity = new Vector2(rb.velocity.x,-wallSlideSpeed);
+            }
+        }
     }
 
     private void Animations()
@@ -243,10 +296,12 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
+        anim.SetBool("isWallSliding", isWallSliding);
     }
 
     private void Flip()
     {
+        facingDirection *= -1;
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);
     }
@@ -254,6 +309,7 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y,wallCheck.position.z));
     }
 
     public void AddGold()
