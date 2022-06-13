@@ -1,8 +1,5 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,8 +19,23 @@ public class PlayerController : MonoBehaviour
     private bool canJump;
     private bool isCrouching = false;
     private bool isSliding = false;
-    private bool isTouchingWall;
-    private bool isWallSliding;
+
+    [Header("Wall Sliding")] 
+    private bool isTouchingFront;
+    public Transform frontCheck;
+    private bool wallSliding;
+    public float wallSlidingSpeed;
+
+    [Header("Wall Jump")] public float wallJumpForce = 18f;
+
+    public float wallJumpDirection = -1f;
+    public Vector2 wallJumpAngle;
+    
+    
+    
+    
+    
+   
 
     private GameObject player;
     private Rigidbody2D rb;
@@ -37,17 +49,10 @@ public class PlayerController : MonoBehaviour
     public float slideSpeed = 1000f;
     public float maxSlideTime = 1.5f;
     public float trampolinSpeed = 35.0f;
-    public float wallCheckDistance;
-    public float wallSlideSpeed;
-    public float wallHopForce;
-    public float wallJumpForce;
-
-    public Vector2 wallHopDirection;
-    public Vector2 wallJumpDirection;
-
-
+    
+    
     public Transform groundCheck;
-    public Transform wallCheck;
+    
 
     public BoxCollider2D regularColl;
     public BoxCollider2D crouchColl;
@@ -55,6 +60,7 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
 
+    
     [Space] [Header("Hearth")] public int currentHearth = 5;
     public GameObject[] hearth;
 
@@ -63,14 +69,14 @@ public class PlayerController : MonoBehaviour
 
     [Space] [Header("Inventory")] public Slot[] inventory;
 
+    
     void Start()
     {
         player = gameObject.transform.GetChild(0).gameObject;
         rb = GetComponent<Rigidbody2D>();
-        anim = player.GetComponent<Animator>();
+        anim = GetComponent<Animator>();
         amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
-        wallHopDirection.Normalize();
-        wallJumpDirection.Normalize();
+        
         goldText.text = gold.ToString();
         SetHealth(currentHearth);
     }
@@ -81,7 +87,7 @@ public class PlayerController : MonoBehaviour
         CheckMoveDirection();
         Animations();
         CheckJump();
-        CheckWallSliding();
+      
     }
 
     private void FixedUpdate()
@@ -89,21 +95,6 @@ public class PlayerController : MonoBehaviour
         Movement();
         CheckSurroundings();
     }
-    
-    private void CheckWallSliding() //Wall sliding is true or not.
-    {
-        if (isTouchingWall && !isGrounded && rb.velocity.y < 0)
-        {
-            isWallSliding = true;
-        }
-        else
-        {
-            isWallSliding = false;
-        } 
-        //Wall Sliding speed part in the Movement() function. With this, character can slide the wall slow. 
-    }
-
-
     private void CheckMoveDirection()
     {
         if (isFacingRight && moveDirection < 0)
@@ -129,12 +120,40 @@ public class PlayerController : MonoBehaviour
     private void CheckSurroundings() //is for interacting with surrounding sth. (ex. Ground)
     {
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround); //Checks if a Collider falls within a circular area.
-        isTouchingWall = Physics2D.Raycast(wallCheck.position,transform.right, wallCheckDistance,whatIsGround); //We can emit a beam from a raycast object in the direction and length we specify. Thus, we can detect which objects the beam we emit hits.
+        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
     }
 
     private void Inputs() //all the inputs from the player
     {
         moveDirection = Input.GetAxisRaw("Horizontal");
+        
+        //WallSlide
+        if (isTouchingFront == true && isGrounded == false && moveDirection != 0)
+        {
+            wallSliding = true;
+        }
+        else
+        {
+            wallSliding = false;
+        }
+
+        if (wallSliding)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+        }
+        
+        //wallJump
+        if ((wallSliding || isTouchingFront && canJump))
+        {
+            rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x,wallJumpForce*wallJumpAngle.y),ForceMode2D.Impulse);
+            canJump = false;
+        }
+        
+        
+       
+
+
+
 
         //FOR JUMP
         if (Input.GetButtonDown("Jump"))
@@ -189,6 +208,7 @@ public class PlayerController : MonoBehaviour
             crouchColl.enabled = false;
         }
     }
+    
 
     private void Slide()
     {
@@ -233,7 +253,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckJump() //Prevents the character from jumping infinitely.
     {
-        if ((isGrounded && rb.velocity.y <= 0.01f) || isWallSliding) //If the character interact with the ground or sth.
+        if ((isGrounded && rb.velocity.y <= 0.01f)) //If the character interact with the ground or sth.
         {
             amountOfJumpsLeft = amountOfJumps;
         }
@@ -250,25 +270,10 @@ public class PlayerController : MonoBehaviour
 
     private void Jump()
     {
-        if (canJump && !isWallSliding)
+        if (canJump)
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
             amountOfJumpsLeft--;
-        }
-        else if (isWallSliding && moveDirection == 0 && canJump) //wall Hop
-        {
-            isWallSliding = false;
-            amountOfJumpsLeft--;
-            Vector2 forceToAdd = new Vector2(wallHopForce * wallHopDirection.x * -facingDirection, wallHopForce * wallHopDirection.y);
-            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
-        } 
-        
-        else if ((isWallSliding || isTouchingWall) && moveDirection != 0 && canJump)
-        {
-            isWallSliding = false;
-            amountOfJumpsLeft--;
-            Vector2 forceToAdd = new Vector2(wallJumpForce * wallJumpDirection.x * moveDirection, wallJumpForce * wallJumpDirection.y);
-            rb.AddForce(forceToAdd, ForceMode2D.Impulse);
         }
     }
 
@@ -276,18 +281,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isGrounded)
         {
-            rb.velocity =
-                new Vector2(moveSpeed * moveDirection,
-                    rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
-        }
-        
-        
-        if (isWallSliding) //With this, character can slide the wall slow. 
-        {
-            if (rb.velocity.y < -wallSlideSpeed)
-            {
-                rb.velocity = new Vector2(rb.velocity.x,-wallSlideSpeed);
-            }
+            rb.velocity = new Vector2(moveSpeed * moveDirection, rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
         }
     }
 
@@ -296,11 +290,12 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
-        anim.SetBool("isWallSliding", isWallSliding);
+        anim.SetBool("isWallSliding", wallSliding);
     }
 
     private void Flip()
     {
+        wallJumpDirection *= -1;
         facingDirection *= -1;
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);
@@ -309,7 +304,6 @@ public class PlayerController : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-        Gizmos.DrawLine(wallCheck.position, new Vector3(wallCheck.position.x + wallCheckDistance, wallCheck.position.y,wallCheck.position.z));
     }
 
     public void AddGold()
