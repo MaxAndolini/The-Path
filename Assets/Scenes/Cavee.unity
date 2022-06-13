@@ -92708,6 +92708,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontCheck: {fileID: 807549858}
   wallSlidingSpeed: 1
+  xWallForce: 15
+  yWallForce: 30
+  wallJumpTime: 0.05
   speed: 20
   jumpForce: 20
   groundCheckRadius: 0.6

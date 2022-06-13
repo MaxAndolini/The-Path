@@ -11,6 +11,11 @@ public class PlayerControl : MonoBehaviour
     public Transform frontCheck;
     private bool wallSliding;
     public float wallSlidingSpeed;
+
+    [Header("Wall Jumping")] private bool wallJumping;
+    public float xWallForce;
+    public float yWallForce;
+    public float wallJumpTime;
     
     public float speed;
     public float jumpForce;
@@ -103,10 +108,20 @@ public class PlayerControl : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
+        
+        //WallJump
 
+        if (Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
+        {
+            wallJumping = true;
+            Invoke("SetWallJumpingToFalse", wallJumpTime);
+        }
 
-
-
+        if (wallJumping == true)
+        {
+            rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+        }
+        
 
         Animations();
     }
@@ -138,8 +153,12 @@ public class PlayerControl : MonoBehaviour
             isRunning = false;
         }
     }
-    
-    
+
+    void SetWallJumpingToFalse()
+    {
+        wallJumping = false;
+    }
+
     private void Slide()
     {
         isSliding = true;
