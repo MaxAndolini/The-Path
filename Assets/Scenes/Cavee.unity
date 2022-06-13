@@ -1096,7 +1096,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.0061904117, y: -0.10004198}
+  m_Offset: {x: -0.009649128, y: -0.10004198}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -1107,7 +1107,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.17174591, y: 0.15193103}
+  m_Size: {x: 0.16482848, y: 0.15193103}
   m_EdgeRadius: 0
 --- !u!212 &531532218
 SpriteRenderer:
@@ -92742,9 +92742,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   frontCheck: {fileID: 138181944}
   wallSlidingSpeed: 3
-  wallJumpForce: 18
-  wallJumpDirection: -1
-  wallJumpAngle: {x: 0, y: 0}
   amountOfJumps: 2
   moveSpeed: 20
   jumpForce: 20

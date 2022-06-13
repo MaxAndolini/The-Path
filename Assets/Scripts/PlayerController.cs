@@ -26,10 +26,7 @@ public class PlayerController : MonoBehaviour
     private bool wallSliding;
     public float wallSlidingSpeed;
 
-    [Header("Wall Jump")] public float wallJumpForce = 18f;
-
-    public float wallJumpDirection = -1f;
-    public Vector2 wallJumpAngle;
+ 
     
     
     
@@ -142,12 +139,6 @@ public class PlayerController : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
         }
         
-        //wallJump
-        if ((wallSliding || isTouchingFront && canJump))
-        {
-            rb.AddForce(new Vector2(wallJumpForce * wallJumpDirection * wallJumpAngle.x,wallJumpForce*wallJumpAngle.y),ForceMode2D.Impulse);
-            canJump = false;
-        }
         
         
        
@@ -295,7 +286,6 @@ public class PlayerController : MonoBehaviour
 
     private void Flip()
     {
-        wallJumpDirection *= -1;
         facingDirection *= -1;
         isFacingRight = !isFacingRight;
         transform.Rotate(0.0f, 180.0f, 0.0f);
