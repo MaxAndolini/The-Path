@@ -234,6 +234,7 @@
           <e p="Menu.cs" t="Include" />
           <e p="Parallax.cs" t="Include" />
           <e p="PlayerCamera.cs" t="Include" />
+          <e p="PlayerControl.cs" t="Include" />
           <e p="PlayerController.cs" t="Include" />
           <e p="SaveManager.cs" t="Include" />
           <e p="Slot.cs" t="Include" />

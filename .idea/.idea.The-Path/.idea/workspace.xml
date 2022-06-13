@@ -5,7 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cave.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cave.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cavee.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cavee.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/SampleScene 2.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/SampleScene 2.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,6 +33,7 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/EnemyGFX.cs" />
         <option value="$PROJECT_DIR$/Assets/EnemyBehaviour.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
+        <option value="$PROJECT_DIR$/Assets/Scripts/PlayerControl.cs" />
       </list>
     </option>
   </component>
@@ -110,6 +118,7 @@
       <workItem from="1654943744615" duration="6252000" />
       <workItem from="1655136433861" duration="6250000" />
       <workItem from="1655146984896" duration="128000" />
+      <workItem from="1655149889601" duration="3787000" />
     </task>
     <servers />
   </component>

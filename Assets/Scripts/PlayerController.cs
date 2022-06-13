@@ -28,11 +28,6 @@ public class PlayerController : MonoBehaviour
 
  
     
-    
-    
-    
-    
-   
 
     private GameObject player;
     private Rigidbody2D rb;
