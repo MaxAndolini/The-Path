@@ -5,20 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Player AC.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Player AC.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Crouch.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/Crouch.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Jump.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/Jump.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/JumpFall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/JumpFall.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/JumpUpToFall.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/JumpUpToFall.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Run.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/Run.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Slide.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/Slide.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Wall-Slide.anim" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animations/Wall-Slide.anim" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cavee.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cavee.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Bat_Controller.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Bat_Controller.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,6 +109,7 @@
       <workItem from="1654441844153" duration="1735000" />
       <workItem from="1654943744615" duration="6252000" />
       <workItem from="1655136433861" duration="6250000" />
+      <workItem from="1655146984896" duration="128000" />
     </task>
     <servers />
   </component>
