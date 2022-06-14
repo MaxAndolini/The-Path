@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    
     [Header("Wall Sliding")] 
     private bool isTouchingFront;
     public Transform frontCheck;
@@ -49,108 +50,144 @@ public class PlayerControl : MonoBehaviour
     
     private Animator anim;
     
+    [Space] [Header("Gold")] public Text goldText;
+    public int gold;
+    
+    [Space] [Header("Trampoline")] public float trampolineSpeed = 35.0f;
+    
     void Start()
     {
         extraJumps = extraJumpValue;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
+        goldText.text = gold.ToString();
     }
+    
     void Update()
     {
-        if (isGrounded == true)
+        if (!Menu.gamePause)
         {
-            extraJumps = extraJumpValue;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-            extraJumps--;
-        }
-        else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
-        {
-            rb.velocity = Vector2.up * jumpForce;
-        }
-        
-        //FOR SLIDING
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Slide();
-        }
+            if (isGrounded)
+            {
+                extraJumps = extraJumpValue;
+            }
 
-        //FOR CROUCH
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
-        {
-            Crouch();
-        }
-        else if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && isGrounded)
-        {
-            isCrouching = false;
-            anim.Play("Idle");
-            anim.SetBool("isCrouching", false);
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            regularColl.enabled = true;
-            crouchColl.enabled = false;
-        }
-        
-        //WallSlide
-        if (isTouchingFront == true && isGrounded == false && moveInput != 0)
-        {
-            wallSliding = true;
-        }
-        else
-        {
-            wallSliding = false;
-        }
+            if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                extraJumps--;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
 
-        if (wallSliding)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-        
-        //WallJump
+            //FOR SLIDING
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                Slide();
+            }
 
-        if (Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
-        {
-            wallJumping = true;
-            Invoke("SetWallJumpingToFalse", wallJumpTime);
-        }
+            //FOR CROUCH
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
+            {
+                Crouch();
+            }
+            else if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && isGrounded)
+            {
+                isCrouching = false;
+                anim.Play("Idle");
+                anim.SetBool("isCrouching", false);
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                regularColl.enabled = true;
+                crouchColl.enabled = false;
+            }
 
-        if (wallJumping == true)
-        {
-            rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
-        }
-        
+            //WallSlide
+            if (isTouchingFront == true && isGrounded == false && moveInput != 0)
+            {
+                wallSliding = true;
+            }
+            else
+            {
+                wallSliding = false;
+            }
 
-        Animations();
+            if (wallSliding)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+            }
+
+            //WallJump
+
+            if (Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
+            {
+                wallJumping = true;
+                Invoke("SetWallJumpingToFalse", wallJumpTime);
+            }
+
+            if (wallJumping == true)
+            {
+                rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+            }
+
+            Animations();
+        }
     }
 
     private void FixedUpdate()
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
-        
-        moveInput = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-        
-        
-        if (facingRight == false && moveInput > 0)
+        if (!Menu.gamePause)
         {
-            Flip();
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
+
+            moveInput = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+
+            if (facingRight == false && moveInput > 0)
+            {
+                Flip();
+            }
+            else if (facingRight == true && moveInput < 0)
+            {
+                Flip();
+            }
+
+            if (Mathf.Abs(rb.velocity.x) >= 0.01f)
+            {
+                isRunning = true;
+            }
+            else
+            {
+                isRunning = false;
+            }
         }
-        else if(facingRight == true && moveInput <0)
+    }
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!Menu.gamePause)
         {
-            Flip();
-        }
-        
-        if (Mathf.Abs(rb.velocity.x) >= 0.01f)
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
+            if (col.CompareTag("Gold"))
+            {
+                var gold = GameObject.Find("GoldImage");
+                var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
+                    gold.transform.rotation,
+                    gold.transform);
+                Destroy(col.gameObject);
+                animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
+                    .OnComplete(() =>
+                    {
+                        Destroy(animGameObject);
+                        AddGold();
+                    });
+            }
+            else if (col.CompareTag("Trampoline"))
+            {
+                rb.velocity = Vector2.up * trampolineSpeed;
+            }
         }
     }
 
@@ -221,5 +258,11 @@ public class PlayerControl : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+    
+    public void AddGold()
+    {
+        gold++;
+        goldText.text = gold.ToString();
     }
 }
