@@ -213,6 +213,9 @@
             <e p="UnityReferenceHelper.cs" t="Include" />
           </e>
         </e>
+        <e p="Cave Platformer Tileset" t="Include">
+          <e p="Readme.txt" t="Include" />
+        </e>
         <e p="DOTween" t="Include">
           <e p="Modules" t="Include">
             <e p="DOTweenModuleAudio.cs" t="Include" />
@@ -227,9 +230,12 @@
           <e p="Readme.txt" t="Include" />
         </e>
         <e p="Scripts" t="Include">
+          <e p="CrabEnemyAI.cs" t="Include" />
           <e p="DontDestroy.cs" t="Include" />
           <e p="EnemyBehaviour.cs" t="Include" />
           <e p="EnemyGFX.cs" t="Include" />
+          <e p="FlyingEnemy.cs" t="Include" />
+          <e p="FlyingEnemyControl.cs" t="Include" />
           <e p="Item.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
           <e p="Parallax.cs" t="Include" />
