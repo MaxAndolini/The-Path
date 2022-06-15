@@ -9,6 +9,6 @@ public class DontDestroy : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
 
-        //SceneManager.LoadScene("Cave");
+        SceneManager.LoadScene("Cave");
     }
 }

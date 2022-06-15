@@ -7,13 +7,13 @@ using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    [Header("Wall Sliding")] 
+    [Space] [Header("Wall Sliding")] 
     private bool isTouchingFront;
     public Transform frontCheck;
     private bool wallSliding;
     public float wallSlidingSpeed;
 
-    [Header("Wall Jumping")] private bool wallJumping;
+    [Space] [Header("Wall Jumping")] private bool wallJumping;
     public float xWallForce;
     public float yWallForce;
     public float wallJumpTime;
@@ -172,12 +172,12 @@ public class PlayerControl : MonoBehaviour
         {
             if (col.CompareTag("Gold"))
             {
-                var gold = GameObject.Find("GoldImage");
-                var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
-                    gold.transform.rotation,
-                    gold.transform);
+                var goldGameObject = GameObject.Find("GoldImage");
+                var animGameObject = Instantiate(goldGameObject, Camera.main.WorldToScreenPoint(transform.position),
+                    goldGameObject.transform.rotation,
+                    goldGameObject.transform);
                 Destroy(col.gameObject);
-                animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
+                animGameObject.transform.DOMove(goldGameObject.transform.position, 1.5f).SetEase(Ease.OutSine)
                     .OnComplete(() =>
                     {
                         Destroy(animGameObject);
