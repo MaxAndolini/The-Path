@@ -8,6 +8,7 @@ TagManager:
   - Trampoline
   - Enemy
   - PlayerCamera
+  - MovingPlatform
   layers:
   - Default
   - TransparentFX
