@@ -1,40 +1,30 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 public class FlyingEnemy : MonoBehaviour
 {
     public float speed;
-    private GameObject player;
-    
-    public bool follow = false;
+
+    public bool follow;
     public Transform startPoint;
-    
-    void Start()
+    private GameObject player;
+
+    private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        if (player == null)
+        if (player != null)
         {
-            return;
-        }
+            if (follow)
+                Follow();
+            else
+                GoSTartPoint();
 
-        if (follow == true)
-        {
-            Follow();
+            Flip();
         }
-        else
-        {
-            GoSTartPoint();
-        }
-        
-        Flip();
-        
     }
 
     private void Follow()
@@ -50,12 +40,8 @@ public class FlyingEnemy : MonoBehaviour
     private void Flip()
     {
         if (transform.position.x > player.transform.position.x)
-        {
-            transform.rotation = Quaternion.Euler(0,0,0);
-        }
+            transform.rotation = Quaternion.Euler(0, 0, 0);
         else
-        {
-            transform.rotation = Quaternion.Euler(0,180,0);
-        }
+            transform.rotation = Quaternion.Euler(0, 180, 0);
     }
 }

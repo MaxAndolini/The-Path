@@ -20,7 +20,7 @@ public class Menu : MonoBehaviour
     private void Start()
     {
         PauseGame(true);
-        
+
         musicSlider.GetComponent<Slider>().value = SaveManager.Instance.music;
         soundSlider.GetComponent<Slider>().value = SaveManager.Instance.sound;
 
@@ -30,7 +30,7 @@ public class Menu : MonoBehaviour
 
     public void PauseGame(bool status)
     {
-        Time.timeScale = (status) ? 0 : 1;
+        Time.timeScale = status ? 0 : 1;
         gamePause = status;
     }
 
@@ -55,7 +55,7 @@ public class Menu : MonoBehaviour
         instructions.SetActive(false);
         settings.SetActive(false);
     }
-    
+
     public void Play()
     {
         mainMenu.SetActive(false);
@@ -73,7 +73,7 @@ public class Menu : MonoBehaviour
     public void UnPause()
     {
         PauseGame(false);
-        pauseMenu.SetActive(false); 
+        pauseMenu.SetActive(false);
     }
 
     public void Instructions()
@@ -82,14 +82,14 @@ public class Menu : MonoBehaviour
         main.SetActive(false);
         instructions.SetActive(true);
     }
-    
+
     public void Settings()
     {
         SoundManager.Instance.PlayOneShot("Button");
         main.SetActive(false);
         settings.SetActive(true);
     }
-    
+
     public void Quit()
     {
         Application.Quit();

@@ -1,14 +1,11 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class DontDestroy : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
         DontDestroyOnLoad(gameObject);
 
-        SceneManager.LoadScene("Cave");
+        //SceneManager.LoadScene("Cave");
     }
 }

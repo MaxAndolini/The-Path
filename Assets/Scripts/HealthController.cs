@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,17 +19,53 @@ public class HealthController : MonoBehaviour
     {
         if (col.gameObject.CompareTag("Enemy"))
         {
-            //Hurt Animation
-            var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-            DOTween.Sequence()
-                .Append(spriteRenderer.DOColor(Color.red, 0.05f))
-                .Append(spriteRenderer.DOColor(Color.white, 0.7f));
+            Hurt();
 
             //Change Health
             currentHearth -= 0.5f;
             if (currentHearth >= 0) SetHealth(currentHearth);
             //else GameOver();
         }
+        else if (col.gameObject.CompareTag("Thorn"))
+        {
+            Hurt();
+
+            //Change Health
+            currentHearth -= 0.5f;
+            if (currentHearth >= 0) SetHealth(currentHearth);
+            //else GameOver();
+        }
+        else if (col.gameObject.CompareTag("Spike"))
+        {
+            Hurt();
+
+            //Change Health
+            currentHearth -= 0.5f;
+            if (currentHearth >= 0) SetHealth(currentHearth);
+            //else GameOver();
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.gameObject.CompareTag("Space"))
+        {
+            Hurt();
+
+            //Change Health
+            currentHearth = 0;
+            if (currentHearth >= 0) SetHealth(currentHearth);
+            //else GameOver();
+        }
+    }
+
+    public void Hurt()
+    {
+        //Hurt Animation
+        var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        DOTween.Sequence()
+            .Append(spriteRenderer.DOColor(Color.red, 0.05f))
+            .Append(spriteRenderer.DOColor(Color.white, 0.7f));
     }
 
     private void SetHealth(float h)

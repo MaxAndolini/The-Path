@@ -9,6 +9,9 @@ TagManager:
   - Enemy
   - PlayerCamera
   - MovingPlatform
+  - Thorn
+  - Space
+  - Spike
   layers:
   - Default
   - TransparentFX

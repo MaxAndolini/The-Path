@@ -53,8 +53,6 @@ public class PlayerControl : MonoBehaviour
     [Space] [Header("Gold")] public Text goldText;
     public int gold;
     
-    [Space] [Header("Trampoline")] public float trampolineSpeed = 35.0f;
-    
     void Start()
     {
         extraJumps = extraJumpValue;
@@ -183,10 +181,6 @@ public class PlayerControl : MonoBehaviour
                         Destroy(animGameObject);
                         AddGold();
                     });
-            }
-            else if (col.CompareTag("Trampoline"))
-            {
-                rb.velocity = Vector2.up * trampolineSpeed;
             }
         }
     }

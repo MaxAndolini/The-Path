@@ -1,3 +1,4 @@
+using System;
 using DG.Tweening;
 using UnityEngine;
 
@@ -5,6 +6,7 @@ public class ShopController : MonoBehaviour
 {
     public GameObject shop;
     private GameObject text;
+   /* private bool shopActive = false;
 
     private void Start()
     {
@@ -17,8 +19,18 @@ public class ShopController : MonoBehaviour
         sequence.SetLoops(-1);
     }
 
+    private void Update()
+    {
+        if(shopActive && Input.GetKey(KeyCode.E)) shop.SetActive(true);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("Player")) shop.SetActive(true);
+        if (col.CompareTag("Player")) shopActive = true;
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        shopActive = false;
+    }*/
 }
