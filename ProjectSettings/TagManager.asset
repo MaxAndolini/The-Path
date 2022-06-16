@@ -12,6 +12,8 @@ TagManager:
   - Thorn
   - Space
   - Spike
+  - Door
+  - DontDestroy
   layers:
   - Default
   - TransparentFX

@@ -142,4 +142,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3066a70a9f698734092f93c185011176, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trampolineSpeed: 35
+  trampolineSpeed: 37

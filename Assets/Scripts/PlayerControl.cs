@@ -1,90 +1,108 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerControl : MonoBehaviour
 {
-    [Space] [Header("Wall Sliding")] 
-    private bool isTouchingFront;
     public Transform frontCheck;
-    private bool wallSliding;
     public float wallSlidingSpeed;
-
-    [Space] [Header("Wall Jumping")] private bool wallJumping;
     public float xWallForce;
     public float yWallForce;
     public float wallJumpTime;
-    
+
     public float speed;
     public float jumpForce;
     public float groundCheckRadius;
-    private float moveInput;// which direction player move (1,0,-1)
-   
-
-    private Rigidbody2D rb;
-
-    private bool facingRight = true;
-    private bool isGrounded;
-    private bool isRunning;
-    private bool isCrouching = false;
-    private bool isSliding = false;
 
     public Transform groundCheck;
     public float checkRadius;
-    
-    public LayerMask whatIsGround;
 
-    private int extraJumps;
+    public LayerMask whatIsGround;
     public int extraJumpValue;
-    private int facingDirection = 1;
-    
+
     public BoxCollider2D regularColl;
     public BoxCollider2D crouchColl;
     public BoxCollider2D slideColl;
-    
+
     public float slideSpeed = 1000f;
     public float maxSlideTime = 1.5f;
-    
-    private Animator anim;
-    
+
     [Space] [Header("Gold")] public Text goldText;
     public int gold;
-    
-    void Start()
+
+    [Space] [Header("Key")] public GameObject key;
+    public bool keyStatus;
+
+    private Animator anim;
+
+    private Transform canvas;
+
+    private int extraJumps;
+    private int facingDirection = 1;
+
+    private bool facingRight = true;
+    private bool isCrouching;
+    private bool isGrounded;
+    private bool isRunning;
+    private bool isSliding;
+
+    [Space] [Header("Wall Sliding")] private bool isTouchingFront;
+
+    private float moveInput; // which direction player move (1,0,-1)
+
+    private Rigidbody2D rb;
+
+    [Space] [Header("Wall Jumping")] private bool wallJumping;
+    private bool wallSliding;
+
+    public static PlayerControl Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+    }
+
+    public void Reset()
+    {
+        HealthController.Instance.SetHealth(5.0f);
+        gold = 0;
+        goldText.text = gold.ToString();
+        ChangeKey(false);
+        InventoryController.Instance.ResetInventory();
+    }
+
+    private void Start()
     {
         extraJumps = extraJumpValue;
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        canvas = GameObject.Find("Canvas").transform;
         goldText.text = gold.ToString();
     }
-    
-    void Update()
+
+    private void Update()
     {
-        if (!Menu.gamePause)
+        if (!Menu.Instance.gamePause)
         {
-            if (isGrounded)
-            {
-                extraJumps = extraJumpValue;
-            }
+            if (isGrounded) extraJumps = extraJumpValue;
 
             if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
             {
                 rb.velocity = Vector2.up * jumpForce;
                 extraJumps--;
             }
-            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded == true)
+            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded)
             {
                 rb.velocity = Vector2.up * jumpForce;
             }
 
             //FOR SLIDING
-            if (Input.GetKeyDown(KeyCode.Z))
-            {
-                Slide();
-            }
+            if (Input.GetKeyDown(KeyCode.Z)) Slide();
 
             //FOR CROUCH
             if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
@@ -102,32 +120,23 @@ public class PlayerControl : MonoBehaviour
             }
 
             //WallSlide
-            if (isTouchingFront == true && isGrounded == false && moveInput != 0)
-            {
+            if (isTouchingFront && isGrounded == false && moveInput != 0)
                 wallSliding = true;
-            }
             else
-            {
                 wallSliding = false;
-            }
 
             if (wallSliding)
-            {
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-            }
 
             //WallJump
 
-            if (Input.GetKeyDown(KeyCode.Space) && wallSliding == true)
+            if (Input.GetKeyDown(KeyCode.Space) && wallSliding)
             {
                 wallJumping = true;
                 Invoke("SetWallJumpingToFalse", wallJumpTime);
             }
 
-            if (wallJumping == true)
-            {
-                rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
-            }
+            if (wallJumping) rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
 
             Animations();
         }
@@ -135,7 +144,7 @@ public class PlayerControl : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (!Menu.gamePause)
+        if (!Menu.Instance.gamePause)
         {
             isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
             isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
@@ -144,36 +153,32 @@ public class PlayerControl : MonoBehaviour
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
 
 
-            if (facingRight == false && moveInput > 0)
-            {
+            if (!facingRight && moveInput > 0)
                 Flip();
-            }
-            else if (facingRight == true && moveInput < 0)
-            {
-                Flip();
-            }
+            else if (facingRight && moveInput < 0) Flip();
 
             if (Mathf.Abs(rb.velocity.x) >= 0.01f)
-            {
                 isRunning = true;
-            }
             else
-            {
                 isRunning = false;
-            }
         }
     }
-    
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
+    }
+
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!Menu.gamePause)
+        if (!Menu.Instance.gamePause)
         {
             if (col.CompareTag("Gold"))
             {
                 var goldGameObject = GameObject.Find("GoldImage");
                 var animGameObject = Instantiate(goldGameObject, Camera.main.WorldToScreenPoint(transform.position),
                     goldGameObject.transform.rotation,
-                    goldGameObject.transform);
+                    canvas);
                 Destroy(col.gameObject);
                 animGameObject.transform.DOMove(goldGameObject.transform.position, 1.5f).SetEase(Ease.OutSine)
                     .OnComplete(() =>
@@ -182,10 +187,31 @@ public class PlayerControl : MonoBehaviour
                         AddGold();
                     });
             }
+            else if (col.CompareTag("Door"))
+            {
+                if (keyStatus)
+                {
+                    ChangeKey(false);
+                    var active = SceneManager.GetActiveScene().buildIndex;
+                    if (active == 3)
+                    {
+                        Menu.Instance.GameOver();
+                    }
+                    else
+                    {
+                        SoundManager.Instance.PlayOneShot("DoorOpen");
+                        SceneManager.LoadScene(active + 1);
+                    }
+                }
+                else
+                {
+                    SoundManager.Instance.PlayOneShot("DoorLocked");
+                }
+            }
         }
     }
 
-    void SetWallJumpingToFalse()
+    private void SetWallJumpingToFalse()
     {
         wallJumping = false;
     }
@@ -198,20 +224,15 @@ public class PlayerControl : MonoBehaviour
         regularColl.enabled = false;
         slideColl.enabled = true;
 
-
         if (!facingRight)
-        {
             rb.AddForce(Vector2.right * slideSpeed);
-        }
         else
-        {
             rb.AddForce(Vector2.left * slideSpeed);
-        }
 
         StartCoroutine("stopSlide");
     }
 
-    IEnumerator stopSlide()
+    private IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(maxSlideTime);
         anim.Play("Idle");
@@ -231,32 +252,43 @@ public class PlayerControl : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
     }
 
-    void Flip()
+    private void Flip()
     {
         facingDirection *= -1;
         facingRight = !facingRight;
-        Vector3 Scaler = transform.localScale;
+        var Scaler = transform.localScale;
         Scaler.x *= -1;
         transform.localScale = Scaler;
-
     }
-    
+
     private void Animations()
     {
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
-        
     }
-    
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
-    }
-    
+
     public void AddGold()
     {
         gold++;
         goldText.text = gold.ToString();
+    }
+
+    public bool SpendGold(int h)
+    {
+        if (gold >= h)
+        {
+            gold -= h;
+            goldText.text = gold.ToString();
+            return true;
+        }
+
+        return false;
+    }
+
+    public void ChangeKey(bool h)
+    {
+        key.SetActive(h);
+        keyStatus = h;
     }
 }

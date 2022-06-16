@@ -9,8 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         //Move right or left

@@ -23,34 +23,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/contentModel.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/indexLayout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/modules.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/riderModule.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Chest.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Chest.controller" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Trambolin.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Trambolin.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Player AC.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Player AC.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Trampoline.controller" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/Trampoline.controller" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/shop_anim_4.controller" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animation Controllers/shop_anim_4.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Chest AC.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Chest AC.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Wall-Slide.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Animations/Wall-Slide.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Trampoline.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Trampoline.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Trampoline_Up.anim" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Animation/Trampoline_Up.anim.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Items/Potion.asset" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Items/Potion.asset.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/BackGround.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/BackGround.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Trampoline.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Trampoline.prefab" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/BeforeTheCave.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BeforeTheCave.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/Cave.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Cave.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scenes/FirstPart.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FirstPart.unity" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CrabEnemyAI.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CrabEnemyAI.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/Main.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/Main.unity" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/DontDestroy.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyBehaviour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyBehaviour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/EnemyGFX.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/EnemyGFX.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FlyingEnemy.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FlyingEnemy.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/FlyingEnemyControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/FlyingEnemyControl.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/InventoryController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/InventoryController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Item.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Menu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Menu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/MovingPlatform.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/Parallax.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Parallax.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlatformHold.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlatformHold.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerCamera.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerCamera.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerControl.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerControl.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Assets/Scripts/ShopController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/ShopController.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Spike.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Spike.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/Slot.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/Slot.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/SoundManager.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SpawnPoint.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/SpawnPoint.cs.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TrampolineController.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/TrampolineController.cs.meta" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/EditorBuildSettings.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" beforeDir="false" afterPath="$PROJECT_DIR$/ProjectSettings/TagManager.asset" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
@@ -64,8 +73,32 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/6b1444477c1d41c692ef6c02a838308529ac30/8d/5fce19b3/Void.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/Assets/Scripts/Slot.cs" root0="FORCE_HIGHLIGHTING" />
-    <setting file="file://$PROJECT_DIR$/Assets/TrampolineController.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.2d.sprite@1.0.0/Editor/SpriteEditorModule/SpritePhysicsShapeModule.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Samples~/Cinemachine Example Scenes/Shared/Models/UnityCharacter/Scripts/CharacterMovement.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.cinemachine@2.6.11/Samples~/Cinemachine Example Scenes/Shared/Models/UnityCharacter/Scripts/CharacterMovement2D.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.collab-proxy@1.15.13/Editor/PlasticSCM/UI/UIElements/TabView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.textmeshpro@3.0.6/Tests/Editor/TMP_EditorTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Shortcuts.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/Window/TimelineWindow_Breadcrumbs.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.timeline@1.4.8/Editor/treeview/ItemGui/TimelineClipGUI.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Editor/UI/ButtonEditor.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Button.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/InputField.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/MultipleDisplayUtilities.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Runtime/UI/Core/Utility/ListPool.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/AssertionFailureOnOutputVertexCount.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/Canvas/RootCanvasTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Editor/RectMask2D/RectMask2DCulling.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Button/ButtonTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CanvasScalerWithChildTextObjectDoesNotCrash.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CheckMeshColorsAndColors32Match.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/CreateSceneUtility.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Canvas/RectTransformValidAfterEnable.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/EventSystem/InputModuleTests/MouseUpdate.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/Layout/HorizonalLayoutGroupTests.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$PROJECT_DIR$/Library/PackageCache/com.unity.ugui@1.0.0/Tests/Runtime/MaskClipping/RectMask2DClipping.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -172,7 +205,7 @@
       <workItem from="1655252286631" duration="1089000" />
       <workItem from="1655298001182" duration="2485000" />
       <workItem from="1655325536602" duration="7309000" />
-      <workItem from="1655333939482" duration="385000" />
+      <workItem from="1655333939482" duration="17287000" />
     </task>
     <servers />
   </component>

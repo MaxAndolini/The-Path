@@ -1,14 +1,26 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
     [Space] [Header("Inventory")] public Slot[] inventory;
+    private Transform canvas;
 
-    private void Start()
+    public static InventoryController Instance { get; private set; }
+
+    private void Awake()
     {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
     }
 
-    // Update is called once per frame
+    public void Start()
+    {
+        canvas = GameObject.Find("Canvas").transform;
+    }
+
     private void Update()
     {
         //FOR INVENTORY
@@ -31,16 +43,26 @@ public class InventoryController : MonoBehaviour
         foreach (var i in inventory)
         {
             if (!i.isEmpty) continue;
-            //i.itemImage.gameObject.GetComponent<Transform>().position
-
-            /*Sequence animationSequence = DOTween.Sequence();
-            animationSequence.Append(gameObj.transform.DOMove(i.itemImage.gameObject.transform.position, 4f)).
-                SetEase(Ease.OutSine)
-                .OnComplete(() => {
-                    Destroy(gameObj);
+            i.isEmpty = false;
+            var duplicate = Instantiate(gameObj, canvas);
+            duplicate.transform.DOMove(i.itemImage.gameObject.transform.position, 3f)
+                .SetEase(Ease.OutSine)
+                .OnComplete(() =>
+                {
+                    Destroy(duplicate);
                     i.Set(item);
-                });*/
+                })
+                .SetUpdate(true);
+
             break;
+        }
+    }
+
+    public void ResetInventory()
+    {
+        foreach (var i in inventory)
+        {
+            i.Reset();
         }
     }
 }

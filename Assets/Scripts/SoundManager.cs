@@ -6,7 +6,11 @@ public class SoundManager : MonoBehaviour
     public AudioSource sound;
 
     public AudioClip menu;
+    public AudioClip background1;
     public AudioClip button;
+    public AudioClip doorLocked;
+    public AudioClip doorOpen;
+    public AudioClip chest;
 
     public static SoundManager Instance { get; private set; }
 
@@ -17,12 +21,7 @@ public class SoundManager : MonoBehaviour
         else
             Instance = this;
     }
-
-    private void Start()
-    {
-        PlayMusic(menu);
-    }
-
+    
     public void PlayOneShot(string clip)
     {
         AudioClip play = null;
@@ -31,9 +30,34 @@ public class SoundManager : MonoBehaviour
             case "Button":
                 play = button;
                 break;
+            case "DoorLocked":
+                play = doorLocked;
+                break;            
+            case "DoorOpen":
+                play = doorOpen;
+                break;            
+            case "Chest":
+                play = chest;
+                break;
         }
 
-        if (play != null) PlaySound(play);
+        if (play != null) PlayOneShot(play);
+    }
+    
+    public void PlayMusic(string clip)
+    {
+        AudioClip play = null;
+        switch (clip)
+        {
+            case "Menu":
+                play = menu;
+                break;
+            case "Background1":
+                play = background1;
+                break;
+        }
+
+        if (play != null) PlayMusic(play);
     }
 
     public void PlayMusic(AudioClip musicClip)
@@ -44,9 +68,8 @@ public class SoundManager : MonoBehaviour
         music.Play();
     }
 
-    public void PlaySound(AudioClip soundClip)
+    public void PlayOneShot(AudioClip soundClip)
     {
-        Debug.Log(soundClip.name);
         sound.PlayOneShot(soundClip);
     }
 }

@@ -21,6 +21,13 @@ public class Slot : MonoBehaviour
         isEmpty = false;
         itemImage.sprite = item.itemSprite;
     }
+    
+    public void Reset()
+    {
+        item = null;
+        itemImage.enabled = false;
+        isEmpty = true;
+    }
 
     public void Use()
     {
@@ -33,8 +40,15 @@ public class Slot : MonoBehaviour
         isEmpty = true;
     }
 
-    public void Potion()
+    public void RedPotion()
     {
-        Debug.Log("Potion kullanıldı!");
+        HealthController.Instance.GiveHealth(2);
+        Debug.Log("Red Potion kullanıldı!");
+    }
+    
+    public void BluePotion()
+    {
+        HealthController.Instance.UseBluePotion();
+        Debug.Log("Blue Potion kullanıldı!");
     }
 }

@@ -26,9 +26,6 @@ public class PlayerController : MonoBehaviour
     private bool wallSliding;
     public float wallSlidingSpeed;
 
- 
-    
-
     private GameObject player;
     private Rigidbody2D rb;
     private Animator anim;

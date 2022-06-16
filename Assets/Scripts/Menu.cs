@@ -1,14 +1,18 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
 {
-    public static bool gamePause;
+    public bool gamePause;
     public GameObject logo1;
     public GameObject logo2;
     public GameObject mainMenu;
     public GameObject pauseMenu;
+    public GameObject shopMenu;
+    public GameObject gameOverMenu;
+    public Text gameOverGold;
     public GameObject main;
     public GameObject instructions;
     public GameObject settings;
@@ -17,6 +21,16 @@ public class Menu : MonoBehaviour
     private Sequence mySequence1;
     private Sequence mySequence2;
 
+    public static Menu Instance { get; private set; }
+
+    private void Awake()
+    {
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
+    }
+
     private void Start()
     {
         PauseGame(true);
@@ -24,6 +38,7 @@ public class Menu : MonoBehaviour
         musicSlider.GetComponent<Slider>().value = SaveManager.Instance.music;
         soundSlider.GetComponent<Slider>().value = SaveManager.Instance.sound;
 
+        SoundManager.Instance.PlayMusic("Menu");
         Logo();
         Main();
     }
@@ -51,6 +66,7 @@ public class Menu : MonoBehaviour
 
     public void Main()
     {
+        mainMenu.SetActive(true);
         main.SetActive(true);
         instructions.SetActive(false);
         settings.SetActive(false);
@@ -59,21 +75,47 @@ public class Menu : MonoBehaviour
     public void Play()
     {
         mainMenu.SetActive(false);
-        mySequence1.Kill();
-        mySequence2.Kill();
+        mySequence1.Pause();
+        mySequence2.Pause();
         PauseGame(false);
+        SoundManager.Instance.PlayMusic("Background1");
     }
 
     public void Pause()
     {
-        PauseGame(true);
-        pauseMenu.SetActive(true);
+        if (!gamePause)
+        {
+            PauseGame(true);
+            pauseMenu.SetActive(true);
+        }
     }
 
     public void UnPause()
     {
         PauseGame(false);
         pauseMenu.SetActive(false);
+    }
+
+    public void Shop()
+    {
+        if (!gamePause)
+        {
+            PauseGame(true);
+            shopMenu.SetActive(true);
+        }
+    }
+
+    public void CloseShop()
+    {
+        PauseGame(false);
+        shopMenu.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        PauseGame(true);
+        gameOverGold.text = PlayerControl.Instance.gold.ToString();
+        gameOverMenu.SetActive(true);
     }
 
     public void Instructions()
@@ -93,6 +135,27 @@ public class Menu : MonoBehaviour
     public void Quit()
     {
         Application.Quit();
+    }
+
+    public void Restart()
+    {
+        UnPause();
+        gameOverMenu.SetActive(false);
+        SceneManager.LoadScene(1);
+        PlayerControl.Instance.Reset();
+        SoundManager.Instance.PlayMusic("Background1");
+    }
+
+    public void MainMenu()
+    {
+        pauseMenu.SetActive(false);
+        gameOverMenu.SetActive(false);
+        SceneManager.LoadScene(1);
+        PlayerControl.Instance.Reset();
+        mySequence1.Play();
+        mySequence2.Play();
+        SoundManager.Instance.PlayMusic("Menu");
+        Main();
     }
 
     public void SetMusicVolume(float musicVolume)
