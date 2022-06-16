@@ -88923,7 +88923,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_ConfineMode: 0
   m_BoundingVolume: {fileID: 0}
-  m_BoundingShape2D: {fileID: 0}
+  m_BoundingShape2D: {fileID: 1631561498}
   m_ConfineScreenEdges: 1
   m_Damping: 0
 --- !u!114 &871386199
@@ -90716,7 +90716,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2002782828
 MonoBehaviour:
   m_ObjectHideFlags: 0

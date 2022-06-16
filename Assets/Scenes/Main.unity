@@ -331,6 +331,7 @@ MonoBehaviour:
   pauseMenu: {fileID: 1856169949}
   shopMenu: {fileID: 1033566575}
   gameOverMenu: {fileID: 381096166}
+  gameOverText: {fileID: 879444666}
   gameOverGold: {fileID: 1946997983}
   main: {fileID: 553976351}
   instructions: {fileID: 1087365547}
@@ -5877,7 +5878,7 @@ GameObject:
   - component: {fileID: 879444667}
   - component: {fileID: 879444666}
   m_Layer: 5
-  m_Name: Text
+  m_Name: GameOverText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

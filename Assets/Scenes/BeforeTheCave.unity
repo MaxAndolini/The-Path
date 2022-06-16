@@ -33586,7 +33586,7 @@ GameObject:
   - component: {fileID: 2021203086}
   m_Layer: 0
   m_Name: Bat
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -33616,7 +33616,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: -0.0025439088, y: -0.0131677715}
@@ -33721,8 +33721,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021203085}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -23.1161, y: 25.0992, z: 0}
-  m_LocalScale: {x: 16.541286, y: 17.03737, z: 1}
+  m_LocalPosition: {x: -22.87, y: 24, z: 0}
+  m_LocalScale: {x: 14.291672, y: 14.338652, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6

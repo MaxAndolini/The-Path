@@ -62,13 +62,13 @@ public class HealthController : MonoBehaviour
             if (bluePotionCurrentTime > 0) currentHearth -= Random.Range(0, Random.Range(0, 1)) == 0 ? 0f : 0.5f;
             else currentHearth -= 0.5f;
             if (currentHearth >= 0) SetHealth(currentHearth);
-            else Menu.Instance.GameOver();
+            else Menu.Instance.GameOver(false);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Space")) Menu.Instance.GameOver();
+        if (col.gameObject.CompareTag("Space")) Menu.Instance.GameOver(false);
     }
 
     public void Hurt()

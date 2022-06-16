@@ -12,6 +12,7 @@ public class Menu : MonoBehaviour
     public GameObject pauseMenu;
     public GameObject shopMenu;
     public GameObject gameOverMenu;
+    public Text gameOverText;
     public Text gameOverGold;
     public GameObject main;
     public GameObject instructions;
@@ -111,9 +112,10 @@ public class Menu : MonoBehaviour
         shopMenu.SetActive(false);
     }
 
-    public void GameOver()
+    public void GameOver(bool h)
     {
         PauseGame(true);
+        gameOverText.text = (h) ? "YOU WIN" : "GAME OVER";
         gameOverGold.text = PlayerController.Instance.gold.ToString();
         gameOverMenu.SetActive(true);
     }
