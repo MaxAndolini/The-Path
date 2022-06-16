@@ -23,6 +23,6 @@ public class ShopItemController : MonoBehaviour
 
     public void Buy()
     {
-        if (PlayerControl.Instance.SpendGold(cost)) InventoryController.Instance.AddInventory(image, item);
+        if (PlayerController.Instance.SpendGold(cost)) InventoryController.Instance.AddInventory(image, item);
     }
 }

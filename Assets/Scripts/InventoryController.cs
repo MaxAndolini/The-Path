@@ -60,9 +60,6 @@ public class InventoryController : MonoBehaviour
 
     public void ResetInventory()
     {
-        foreach (var i in inventory)
-        {
-            i.Reset();
-        }
+        foreach (var i in inventory) i.Reset();
     }
 }

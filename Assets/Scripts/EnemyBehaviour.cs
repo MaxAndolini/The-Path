@@ -9,7 +9,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
     }
-    
+
     private void Update()
     {
         //Move right or left

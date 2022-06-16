@@ -6,7 +6,7 @@ public class MovingPlatform : MonoBehaviour
     public float platformSpeed;
 
     private Vector3 nextPos;
-    
+
     private void Start()
     {
         nextPos = pos1.position;

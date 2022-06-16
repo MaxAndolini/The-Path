@@ -5,8 +5,7 @@ public class DontDestroy : MonoBehaviour
 {
     private void Start()
     {
-        if (GameObject.FindGameObjectsWithTag("DontDestroy").Length == 1) DontDestroyOnLoad(gameObject);
-        else Destroy(gameObject);
+        DontDestroyOnLoad(gameObject);
 
         SceneManager.LoadScene(1);
     }

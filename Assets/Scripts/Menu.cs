@@ -114,7 +114,7 @@ public class Menu : MonoBehaviour
     public void GameOver()
     {
         PauseGame(true);
-        gameOverGold.text = PlayerControl.Instance.gold.ToString();
+        gameOverGold.text = PlayerController.Instance.gold.ToString();
         gameOverMenu.SetActive(true);
     }
 
@@ -142,7 +142,7 @@ public class Menu : MonoBehaviour
         UnPause();
         gameOverMenu.SetActive(false);
         SceneManager.LoadScene(1);
-        PlayerControl.Instance.Reset();
+        PlayerController.Instance.Reset();
         SoundManager.Instance.PlayMusic("Background1");
     }
 
@@ -151,7 +151,7 @@ public class Menu : MonoBehaviour
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         SceneManager.LoadScene(1);
-        PlayerControl.Instance.Reset();
+        PlayerController.Instance.Reset();
         mySequence1.Play();
         mySequence2.Play();
         SoundManager.Instance.PlayMusic("Menu");

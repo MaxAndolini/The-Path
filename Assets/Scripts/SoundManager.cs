@@ -11,6 +11,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip doorLocked;
     public AudioClip doorOpen;
     public AudioClip chest;
+    public AudioClip gold;
+    public AudioClip potion;
+    public AudioClip trampoline;
 
     public static SoundManager Instance { get; private set; }
 
@@ -21,7 +24,7 @@ public class SoundManager : MonoBehaviour
         else
             Instance = this;
     }
-    
+
     public void PlayOneShot(string clip)
     {
         AudioClip play = null;
@@ -32,18 +35,27 @@ public class SoundManager : MonoBehaviour
                 break;
             case "DoorLocked":
                 play = doorLocked;
-                break;            
+                break;
             case "DoorOpen":
                 play = doorOpen;
-                break;            
+                break;
             case "Chest":
                 play = chest;
+                break;
+            case "Gold":
+                play = gold;
+                break;
+            case "Potion":
+                play = potion;
+                break;
+            case "Trampoline":
+                play = trampoline;
                 break;
         }
 
         if (play != null) PlayOneShot(play);
     }
-    
+
     public void PlayMusic(string clip)
     {
         AudioClip play = null;

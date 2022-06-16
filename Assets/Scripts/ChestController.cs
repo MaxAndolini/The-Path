@@ -1,12 +1,9 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ChestController : MonoBehaviour
 {
     private Animator anim;
-    
+
     private void Start()
     {
         anim = GetComponent<Animator>();
@@ -14,11 +11,11 @@ public class ChestController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Player") && !PlayerControl.Instance.keyStatus)
+        if (col.gameObject.CompareTag("Player") && !PlayerController.Instance.keyStatus)
         {
             anim.SetTrigger("openChest");
             SoundManager.Instance.PlayOneShot("Chest");
-            PlayerControl.Instance.ChangeKey(true);
+            PlayerController.Instance.ChangeKey(true);
         }
     }
 }

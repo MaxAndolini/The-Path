@@ -1,197 +1,220 @@
 using System.Collections;
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    //NOTES FROM INTERFACE:
-    //In materials folder I use Physics Material 2D to prevent the character from Sticking to the wall. I reduce the friction to 0.
-
-    [Header("Character")] private float moveDirection; // which direction player move (1,0,-1)
-
-    private int amountOfJumpsLeft;
-    private int facingDirection = 1;
-
-    private bool isFacingRight = true;
-    private bool isRunning;
-    private bool isGrounded;
-    private bool canJump;
-    private bool isCrouching = false;
-    private bool isSliding = false;
-
-    [Header("Wall Sliding")] 
-    private bool isTouchingFront;
     public Transform frontCheck;
-    private bool wallSliding;
     public float wallSlidingSpeed;
+    public float xWallForce;
+    public float yWallForce;
+    public float wallJumpTime;
 
-    private GameObject player;
-    private Rigidbody2D rb;
-    private Animator anim;
-
-    public int amountOfJumps = 1;
-
-    public float moveSpeed = 15.0f;
-    public float jumpForce = 16.0f; //In rigidbody2d, we changed gravity scale with 4 for better jump experience.
+    public float speed;
+    public float jumpForce;
     public float groundCheckRadius;
-    public float slideSpeed = 1000f;
-    public float maxSlideTime = 1.5f;
-    public float trampolinSpeed = 35.0f;
-    
-    
+
     public Transform groundCheck;
-    
+    public float checkRadius;
+
+    public LayerMask whatIsGround;
+    public int extraJumpValue;
 
     public BoxCollider2D regularColl;
     public BoxCollider2D crouchColl;
     public BoxCollider2D slideColl;
 
-    public LayerMask whatIsGround; //using this, we can assign layers to the things we want.
-
-    
-    [Space] [Header("Hearth")] public int currentHearth = 5;
-    public GameObject[] hearth;
+    public float slideSpeed = 1000f;
+    public float maxSlideTime = 1.5f;
 
     [Space] [Header("Gold")] public Text goldText;
     public int gold;
 
-    [Space] [Header("Inventory")] public Slot[] inventory;
+    [Space] [Header("Key")] public GameObject key;
+    public bool keyStatus;
 
-    
-    void Start()
+    private Animator anim;
+
+    private Transform canvas;
+
+    private int extraJumps;
+
+    private bool facingRight = true;
+    private bool isCrouching;
+    private bool isGrounded;
+    private bool isRunning;
+    private bool isSliding;
+
+    [Space] [Header("Wall Sliding")] private bool isTouchingFront;
+
+    private float moveInput; // which direction player move (1,0,-1)
+
+    private Rigidbody2D rb;
+
+    [Space] [Header("Wall Jumping")] private bool wallJumping;
+    private bool wallSliding;
+
+    public static PlayerController Instance { get; private set; }
+
+    private void Awake()
     {
-        player = gameObject.transform.GetChild(0).gameObject;
-        rb = GetComponent<Rigidbody2D>();
-        anim = GetComponent<Animator>();
-        amountOfJumpsLeft = amountOfJumps; //we should equalize first. Because character does not jump yet. So if the character has the 1 jump, than 1 jump left.
-        
-        goldText.text = gold.ToString();
-        SetHealth(currentHearth);
+        if (Instance != null && Instance != this)
+            Destroy(this);
+        else
+            Instance = this;
     }
 
-    void Update()
+    public void Reset()
     {
-        Inputs();
-        CheckMoveDirection();
-        Animations();
-        CheckJump();
-      
+        HealthController.Instance.SetHealth(5.0f);
+        gold = 0;
+        goldText.text = gold.ToString();
+        ChangeKey(false);
+        InventoryController.Instance.ResetInventory();
+    }
+
+    private void Start()
+    {
+        extraJumps = extraJumpValue;
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+        canvas = GameObject.Find("Canvas").transform;
+        goldText.text = gold.ToString();
+    }
+
+    private void Update()
+    {
+        if (!Menu.Instance.gamePause)
+        {
+            if (isGrounded) extraJumps = extraJumpValue;
+
+            if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+                extraJumps--;
+            }
+            else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded)
+            {
+                rb.velocity = Vector2.up * jumpForce;
+            }
+
+            //FOR SLIDING
+            if (Input.GetKeyDown(KeyCode.Z)) Slide();
+
+            //FOR CROUCH
+            if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
+            {
+                Crouch();
+            }
+            else if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && isGrounded)
+            {
+                isCrouching = false;
+                anim.Play("Idle");
+                anim.SetBool("isCrouching", false);
+                rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+                regularColl.enabled = true;
+                crouchColl.enabled = false;
+            }
+
+            //WallSlide
+            if (isTouchingFront && isGrounded == false && moveInput != 0)
+                wallSliding = true;
+            else
+                wallSliding = false;
+
+            if (wallSliding)
+                rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
+
+            //WallJump
+
+            if (Input.GetKeyDown(KeyCode.Space) && wallSliding)
+            {
+                wallJumping = true;
+                Invoke("SetWallJumpingToFalse", wallJumpTime);
+            }
+
+            if (wallJumping) rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+
+            Animations();
+        }
     }
 
     private void FixedUpdate()
     {
-        Movement();
-        CheckSurroundings();
+        if (!Menu.Instance.gamePause)
+        {
+            isGrounded = Physics2D.OverlapCircle(groundCheck.position, checkRadius, whatIsGround);
+            isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
+
+            moveInput = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+
+
+            if (!facingRight && moveInput > 0)
+                Flip();
+            else if (facingRight && moveInput < 0) Flip();
+
+            if (Mathf.Abs(rb.velocity.x) >= 0.01f)
+                isRunning = true;
+            else
+                isRunning = false;
+        }
     }
-    private void CheckMoveDirection()
+
+    private void OnDrawGizmos()
     {
-        if (isFacingRight && moveDirection < 0)
-        {
-            Flip();
-        }
-
-        if (!isFacingRight && moveDirection > 0)
-        {
-            Flip();
-        }
-
-        if (Mathf.Abs(rb.velocity.x) >= 0.01f)
-        {
-            isRunning = true;
-        }
-        else
-        {
-            isRunning = false;
-        }
+        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
-    private void CheckSurroundings() //is for interacting with surrounding sth. (ex. Ground)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, whatIsGround); //Checks if a Collider falls within a circular area.
-        isTouchingFront = Physics2D.OverlapCircle(frontCheck.position, groundCheckRadius, whatIsGround);
+        if (!Menu.Instance.gamePause)
+        {
+            if (col.CompareTag("Gold"))
+            {
+                var goldGameObject = GameObject.Find("GoldImage");
+                var animGameObject = Instantiate(goldGameObject, Camera.main.WorldToScreenPoint(transform.position),
+                    goldGameObject.transform.rotation,
+                    canvas);
+                Destroy(col.gameObject);
+                SoundManager.Instance.PlayOneShot("Gold");
+                animGameObject.transform.DOMove(goldGameObject.transform.position, 1.5f).SetEase(Ease.OutSine)
+                    .OnComplete(() =>
+                    {
+                        Destroy(animGameObject);
+                        AddGold();
+                    });
+            }
+            else if (col.CompareTag("Door"))
+            {
+                if (keyStatus)
+                {
+                    ChangeKey(false);
+                    var active = SceneManager.GetActiveScene().buildIndex;
+                    if (active == 3)
+                    {
+                        Menu.Instance.GameOver();
+                    }
+                    else
+                    {
+                        SoundManager.Instance.PlayOneShot("DoorOpen");
+                        SceneManager.LoadScene(active + 1);
+                    }
+                }
+                else
+                {
+                    SoundManager.Instance.PlayOneShot("DoorLocked");
+                }
+            }
+        }
     }
 
-    private void Inputs() //all the inputs from the player
+    private void SetWallJumpingToFalse()
     {
-        moveDirection = Input.GetAxisRaw("Horizontal");
-        
-        //WallSlide
-        if (isTouchingFront == true && isGrounded == false && moveDirection != 0)
-        {
-            wallSliding = true;
-        }
-        else
-        {
-            wallSliding = false;
-        }
-
-        if (wallSliding)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
-        }
-        
-        
-        
-       
-
-
-
-
-        //FOR JUMP
-        if (Input.GetButtonDown("Jump"))
-        {
-            Jump();
-        }
-
-        //FOR INVENTORY
-        if ((Input.GetKeyDown(KeyCode.Keypad1) || Input.GetKeyDown(KeyCode.Alpha1)) && inventory[0] != null)
-        {
-            inventory[0].Use();
-        }
-        else if ((Input.GetKeyDown(KeyCode.Keypad2) || Input.GetKeyDown(KeyCode.Alpha2)) && inventory[1] != null)
-        {
-            inventory[1].Use();
-        }
-        else if ((Input.GetKeyDown(KeyCode.Keypad3) || Input.GetKeyDown(KeyCode.Alpha3)) && inventory[2] != null)
-        {
-            inventory[2].Use();
-        }
-        else if ((Input.GetKeyDown(KeyCode.Keypad4) || Input.GetKeyDown(KeyCode.Alpha4)) && inventory[3] != null)
-        {
-            inventory[3].Use();
-        }
-        else if ((Input.GetKeyDown(KeyCode.Keypad5) || Input.GetKeyDown(KeyCode.Alpha5)) && inventory[4] != null)
-        {
-            inventory[4].Use();
-        }
-        else if ((Input.GetKeyDown(KeyCode.Keypad6) || Input.GetKeyDown(KeyCode.Alpha6)) && inventory[5] != null)
-        {
-            inventory[5].Use();
-        }
-
-        //FOR SLIDING
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            Slide();
-        }
-
-        //FOR CROUCH
-        if ((Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow)) && isGrounded)
-        {
-            Crouch();
-        }
-        else if ((Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.DownArrow)) && isGrounded)
-        {
-            isCrouching = false;
-            anim.Play("Idle");
-            anim.SetBool("isCrouching", false);
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-            regularColl.enabled = true;
-            crouchColl.enabled = false;
-        }
+        wallJumping = false;
     }
-    
 
     private void Slide()
     {
@@ -201,20 +224,15 @@ public class PlayerController : MonoBehaviour
         regularColl.enabled = false;
         slideColl.enabled = true;
 
-
-        if (!isFacingRight)
-        {
+        if (!facingRight)
             rb.AddForce(Vector2.right * slideSpeed);
-        }
         else
-        {
             rb.AddForce(Vector2.left * slideSpeed);
-        }
 
         StartCoroutine("stopSlide");
     }
 
-    IEnumerator stopSlide()
+    private IEnumerator stopSlide()
     {
         yield return new WaitForSeconds(maxSlideTime);
         anim.Play("Idle");
@@ -234,38 +252,12 @@ public class PlayerController : MonoBehaviour
         rb.constraints = RigidbodyConstraints2D.FreezePositionX | RigidbodyConstraints2D.FreezePositionY;
     }
 
-    private void CheckJump() //Prevents the character from jumping infinitely.
+    private void Flip()
     {
-        if ((isGrounded && rb.velocity.y <= 0.01f)) //If the character interact with the ground or sth.
-        {
-            amountOfJumpsLeft = amountOfJumps;
-        }
-
-        if (amountOfJumpsLeft <= 0)
-        {
-            canJump = false;
-        }
-        else
-        {
-            canJump = true;
-        }
-    }
-
-    private void Jump()
-    {
-        if (canJump)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, jumpForce);
-            amountOfJumpsLeft--;
-        }
-    }
-
-    private void Movement()
-    {
-        if (isGrounded)
-        {
-            rb.velocity = new Vector2(moveSpeed * moveDirection, rb.velocity.y); //In Rigidbody2D you should freeze the z rotation in constraints.
-        }
+        facingRight = !facingRight;
+        var scaler = transform.localScale;
+        scaler.x *= -1;
+        transform.localScale = scaler;
     }
 
     private void Animations()
@@ -273,19 +265,6 @@ public class PlayerController : MonoBehaviour
         anim.SetBool("isRunning", isRunning);
         anim.SetBool("isGrounded", isGrounded);
         anim.SetFloat("yVelocity", rb.velocity.y);
-        anim.SetBool("isWallSliding", wallSliding);
-    }
-
-    private void Flip()
-    {
-        facingDirection *= -1;
-        isFacingRight = !isFacingRight;
-        transform.Rotate(0.0f, 180.0f, 0.0f);
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawWireSphere(groundCheck.position, groundCheckRadius);
     }
 
     public void AddGold()
@@ -294,80 +273,21 @@ public class PlayerController : MonoBehaviour
         goldText.text = gold.ToString();
     }
 
-    public void AddInventory(GameObject gameObj, Item item)
+    public bool SpendGold(int h)
     {
-        foreach (var i in inventory)
+        if (gold >= h)
         {
-            if (!i.isEmpty) continue;
-            //i.itemImage.gameObject.GetComponent<Transform>().position
-
-            /*Sequence animationSequence = DOTween.Sequence();
-            animationSequence.Append(gameObj.transform.DOMove(i.itemImage.gameObject.transform.position, 4f)).
-                SetEase(Ease.OutSine)
-                .OnComplete(() => {
-                    Destroy(gameObj);
-                    i.Set(item);
-                });*/
-            break;
+            gold -= h;
+            goldText.text = gold.ToString();
+            return true;
         }
+
+        return false;
     }
 
-    private void OnTriggerEnter2D(Collider2D col)
+    public void ChangeKey(bool h)
     {
-        if (col.CompareTag("Gold"))
-        {
-            var gold = GameObject.Find("GoldImage");
-            var animGameObject = Instantiate(gold, Camera.main.WorldToScreenPoint(transform.position),
-                gold.transform.rotation,
-                gold.transform);
-            Destroy(col.gameObject);
-            animGameObject.transform.DOMove(gold.transform.position, 1.5f).SetEase(Ease.OutSine)
-                .OnComplete(() =>
-                {
-                    Destroy(animGameObject);
-                    AddGold();
-                });
-        }
-        else if (col.CompareTag("Trampoline"))
-        {
-            rb.velocity = Vector2.up * trampolinSpeed;
-        }
-    }
-
-    private void OnCollisionEnter2D(Collision2D col)
-    {
-        if (col.gameObject.CompareTag("Enemy"))
-        {
-            //Hurt Animation
-            var spriteRenderer = player.GetComponent<SpriteRenderer>();
-            DOTween.Sequence()
-                .Append(spriteRenderer.DOColor(Color.red, 0.05f))
-                .Append(spriteRenderer.DOColor(Color.white, 0.7f));
-
-            //Change Health
-            currentHearth--;
-            if (currentHearth >= 0) SetHealth(currentHearth);
-            else GameOver();
-        }
-    }
-
-    private void SetHealth(int h)
-    {
-        for (var i = 0; i < 5; i++)
-        {
-            hearth[i].SetActive(false);
-        }
-
-        for (var i = 0; i < h; i++)
-        {
-            hearth[i].SetActive(true);
-        }
-
-        currentHearth = h;
-    }
-
-    private void GameOver()
-    {
-        Debug.Log("Game Over");
+        key.SetActive(h);
+        keyStatus = h;
     }
 }

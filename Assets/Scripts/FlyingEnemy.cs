@@ -12,8 +12,7 @@ public class FlyingEnemy : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
     }
-
-    // Update is called once per frame
+    
     private void Update()
     {
         if (player != null)

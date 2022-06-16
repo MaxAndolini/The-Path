@@ -10,12 +10,13 @@ public class TrampolineController : MonoBehaviour
     {
         anim = GetComponent<Animator>();
     }
-    
+
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (!Menu.Instance.gamePause)
             if (col.CompareTag("Player"))
             {
+                SoundManager.Instance.PlayOneShot("Trampoline");
                 col.GetComponent<Rigidbody2D>().velocity = Vector2.up * trampolineSpeed;
                 anim.SetBool("isPlayerTouch", true);
             }

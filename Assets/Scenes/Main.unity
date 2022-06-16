@@ -10187,7 +10187,10 @@ MonoBehaviour:
   button: {fileID: 8300000, guid: 8ca17bf0c4dd3f044bb5e3db8ebdd724, type: 3}
   doorLocked: {fileID: 8300000, guid: 2d0d622a537f3ae448273b7c7f99367c, type: 3}
   doorOpen: {fileID: 8300000, guid: bc28d1eb7a0237f44808da57e1839658, type: 3}
-  chest: {fileID: 8300000, guid: f2039388c6565524f8b485a0e253c063, type: 3}
+  chest: {fileID: 8300000, guid: 4bc79083c85ad23488196172f48419b3, type: 3}
+  gold: {fileID: 8300000, guid: f7b71bf57d4023e43874b7fe5451ddf4, type: 3}
+  potion: {fileID: 8300000, guid: d6f76871e1bbf5e48966ac558c4c892d, type: 3}
+  trampoline: {fileID: 8300000, guid: f2039388c6565524f8b485a0e253c063, type: 3}
 --- !u!114 &1665277429
 MonoBehaviour:
   m_ObjectHideFlags: 0

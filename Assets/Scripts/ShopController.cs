@@ -1,17 +1,12 @@
-using System;
-using DG.Tweening;
 using UnityEngine;
 
 public class ShopController : MonoBehaviour
 {
-    private bool shopActive = false;
-    
+    private bool shopActive;
+
     private void Update()
     {
-        if (shopActive && Input.GetKey(KeyCode.E))
-        {
-            Menu.Instance.Shop();
-        }
+        if (shopActive && Input.GetKey(KeyCode.E)) Menu.Instance.Shop();
     }
 
     private void OnTriggerEnter2D(Collider2D col)

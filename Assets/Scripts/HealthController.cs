@@ -68,10 +68,7 @@ public class HealthController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.CompareTag("Space"))
-        {
-            Menu.Instance.GameOver();
-        }
+        if (col.gameObject.CompareTag("Space")) Menu.Instance.GameOver();
     }
 
     public void Hurt()
