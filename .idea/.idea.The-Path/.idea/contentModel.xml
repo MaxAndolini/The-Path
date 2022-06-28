@@ -22,10 +22,13 @@
           </e>
           <e p="Readme.txt" t="Include" />
         </e>
+        <e p="GolemBullet.cs" t="Include" />
+        <e p="GolemHit.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="ChestController.cs" t="Include" />
           <e p="CircleBullet.cs" t="Include" />
           <e p="CrabEnemyAI.cs" t="Include" />
+          <e p="Crush.cs" t="Include" />
           <e p="DontDestroy.cs" t="Include" />
           <e p="EnemyBehaviour.cs" t="Include" />
           <e p="FlyingEnemy.cs" t="Include" />
