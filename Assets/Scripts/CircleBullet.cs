@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class CircleBullet : MonoBehaviour
 {
-
-    public float speed;
+    
     private Rigidbody2D rb;
     public Vector2 direction = new Vector2(-5,0);
     // Start is called before the first frame update
@@ -19,6 +18,6 @@ public class CircleBullet : MonoBehaviour
     void FixedUpdate()
     {
         rb.velocity = direction;
-        Destroy(gameObject,4f);
+        Destroy(gameObject,5.5f);
     }
 }

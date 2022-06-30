@@ -23,12 +23,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a13f26bb-bd78-4801-86fb-aaf9d65300c3" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/contentModel.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.The-Path/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Golem_B_Controller.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Golem_B_Controller.controller.meta" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Golem_Reinforced_Projectile_Controller.controller" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Assets/Sprites/Enemy/Enemy Galore 1 - Pixel Art/Controllers/Golem_Reinforced_Projectile_Controller.controller.meta" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Prefabs/Circle.prefab" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Prefabs/Circle.prefab" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/AfterTheCave.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/AfterTheCave.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/BeforeTheCave.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/BeforeTheCave.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scenes/FirstPart.unity" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scenes/FirstPart.unity" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Assets/Scripts/CircleBullet.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Assets/Scripts/CircleBullet.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" beforeDir="false" afterPath="$PROJECT_DIR$/UserSettings/EditorUserSettings.asset" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,9 +87,9 @@
         <option value="$PROJECT_DIR$/Assets/Scripts/PlayerController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/HealthController.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/SpawnTarget.cs" />
+        <option value="$PROJECT_DIR$/Assets/GolemHit.cs" />
         <option value="$PROJECT_DIR$/Assets/Scripts/CircleBullet.cs" />
         <option value="$PROJECT_DIR$/Assets/GolemBullet.cs" />
-        <option value="$PROJECT_DIR$/Assets/GolemHit.cs" />
       </list>
     </option>
   </component>
@@ -184,7 +185,8 @@
       <workItem from="1655367764904" duration="749000" />
       <workItem from="1655369480979" duration="393000" />
       <workItem from="1656405043149" duration="1925000" />
-      <workItem from="1656413006378" duration="1678000" />
+      <workItem from="1656413006378" duration="2104000" />
+      <workItem from="1656614968934" duration="1761000" />
     </task>
     <servers />
   </component>
