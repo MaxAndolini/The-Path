@@ -132,7 +132,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && wallSliding)
             {
                 wallJumping = true;
+                anim.SetBool("isClimbing", true);
                 Invoke("SetWallJumpingToFalse", wallJumpTime);
+               
             }
 
             if (wallJumping) rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
@@ -214,6 +216,7 @@ public class PlayerController : MonoBehaviour
     private void SetWallJumpingToFalse()
     {
         wallJumping = false;
+        anim.SetBool("isClimbing",  false);
     }
 
     private void Slide()

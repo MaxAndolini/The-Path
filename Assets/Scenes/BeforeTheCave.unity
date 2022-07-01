@@ -31140,7 +31140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cfdd6e4c0ac034f3185dced4265f500f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 7
+  speed: 10
   follow: 0
   startPoint: {fileID: 1200918623}
 --- !u!58 &2021203087
