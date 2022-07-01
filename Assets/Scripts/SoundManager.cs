@@ -9,6 +9,7 @@ public class SoundManager : MonoBehaviour
     public AudioClip background1;
     public AudioClip button;
     public AudioClip pain;
+    public AudioClip walk;
     public AudioClip jump;
     public AudioClip slide;
     public AudioClip doorLocked;
@@ -17,6 +18,8 @@ public class SoundManager : MonoBehaviour
     public AudioClip gold;
     public AudioClip potion;
     public AudioClip trampoline;
+    public AudioClip win;
+    public AudioClip lose;
 
     public static SoundManager Instance { get; private set; }
 
@@ -38,6 +41,9 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Pain":
                 play = pain;
+                break;
+            case "Walk":
+                play = walk;
                 break;
             case "Jump":
                 play = jump;
@@ -62,6 +68,12 @@ public class SoundManager : MonoBehaviour
                 break;
             case "Trampoline":
                 play = trampoline;
+                break;
+            case "Win":
+                play = win;
+                break;
+            case "Lose":
+                play = lose;
                 break;
         }
 

@@ -52,6 +52,8 @@ public class PlayerController : MonoBehaviour
     private float moveInput; // which direction player move (1,0,-1)
 
     private Rigidbody2D rb;
+    private float slideTime;
+    private float walkTime;
 
     [Space] [Header("Wall Jumping")] private bool wallJumping;
     private bool wallSliding;
@@ -137,6 +139,25 @@ public class PlayerController : MonoBehaviour
             }
 
             if (wallJumping) rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
+
+            walkTime += Time.deltaTime;
+
+            if (walkTime > 0.5f && isGrounded && isRunning && !isCrouching && !isSliding && !wallJumping &&
+                !wallSliding)
+            {
+                SoundManager.Instance.PlayOneShot("Walk");
+
+                walkTime -= 0.5f;
+            }
+
+            slideTime += Time.deltaTime;
+
+            if (slideTime > 0.6f && isGrounded && !isCrouching && isSliding && !wallJumping && !wallSliding)
+            {
+                SoundManager.Instance.PlayOneShot("Slide");
+
+                slideTime -= 0.6f;
+            }
 
             Animations();
         }
@@ -230,15 +251,12 @@ public class PlayerController : MonoBehaviour
         else
             rb.AddForce(Vector2.left * slideSpeed);
 
-        SoundManager.Instance.PlayOneShot("Slide");
-
         StartCoroutine(StopSlide());
     }
 
     private IEnumerator StopSlide()
     {
         yield return new WaitForSeconds(maxSlideTime);
-        SoundManager.Instance.PlayOneShot("Slide");
         anim.Play("Idle");
         anim.SetBool("isSlide", false);
         regularColl.enabled = true;

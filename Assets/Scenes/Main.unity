@@ -10187,6 +10187,7 @@ MonoBehaviour:
   background1: {fileID: 8300000, guid: 9aa329d00b878a34c9dd3390b51e1c04, type: 3}
   button: {fileID: 8300000, guid: 8ca17bf0c4dd3f044bb5e3db8ebdd724, type: 3}
   pain: {fileID: 8300000, guid: 6297324ed6f00d44e80649e0f58be4bb, type: 3}
+  walk: {fileID: 8300000, guid: 18a69e99862493f4486c5c8f487f102b, type: 3}
   jump: {fileID: 8300000, guid: 78124e9a6629ef9459ea474c521431bb, type: 3}
   slide: {fileID: 8300000, guid: f49a8fc51d3fecb4f8c4eee4cdc2165a, type: 3}
   doorLocked: {fileID: 8300000, guid: 2d0d622a537f3ae448273b7c7f99367c, type: 3}
@@ -10195,6 +10196,8 @@ MonoBehaviour:
   gold: {fileID: 8300000, guid: f7b71bf57d4023e43874b7fe5451ddf4, type: 3}
   potion: {fileID: 8300000, guid: d6f76871e1bbf5e48966ac558c4c892d, type: 3}
   trampoline: {fileID: 8300000, guid: f2039388c6565524f8b485a0e253c063, type: 3}
+  win: {fileID: 8300000, guid: ee3ebea81eb6b9340bffb4e255a850be, type: 3}
+  lose: {fileID: 8300000, guid: 23f079eef0635de49bb93266a356e59c, type: 3}
 --- !u!114 &1665277429
 MonoBehaviour:
   m_ObjectHideFlags: 0

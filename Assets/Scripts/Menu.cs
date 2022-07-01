@@ -115,6 +115,7 @@ public class Menu : MonoBehaviour
     public void GameOver(bool h)
     {
         PauseGame(true);
+        SoundManager.Instance.PlayOneShot((h) ? "Win" : "Lose");
         gameOverText.text = (h) ? "YOU WIN" : "GAME OVER";
         gameOverGold.text = PlayerController.Instance.gold.ToString();
         gameOverMenu.SetActive(true);
