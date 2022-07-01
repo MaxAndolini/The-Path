@@ -16,8 +16,8 @@ public class SaveManager : MonoBehaviour
         else
             Instance = this;
 
-        music = PlayerPrefs.GetFloat("MusicVolume", 0.6f);
-        sound = PlayerPrefs.GetFloat("SoundVolume", 0.6f);
+        music = PlayerPrefs.GetFloat("MusicVolume", 0.5f);
+        sound = PlayerPrefs.GetFloat("SoundVolume", 1f);
         mixer.SetFloat("Music", Mathf.Log(music) * 20f);
         mixer.SetFloat("Sound", Mathf.Log(sound) * 20f);
     }

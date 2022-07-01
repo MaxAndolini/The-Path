@@ -8,6 +8,9 @@ public class SoundManager : MonoBehaviour
     public AudioClip menu;
     public AudioClip background1;
     public AudioClip button;
+    public AudioClip pain;
+    public AudioClip jump;
+    public AudioClip slide;
     public AudioClip doorLocked;
     public AudioClip doorOpen;
     public AudioClip chest;
@@ -32,6 +35,15 @@ public class SoundManager : MonoBehaviour
         {
             case "Button":
                 play = button;
+                break;
+            case "Pain":
+                play = pain;
+                break;
+            case "Jump":
+                play = jump;
+                break;
+            case "Slide":
+                play = slide;
                 break;
             case "DoorLocked":
                 play = doorLocked;

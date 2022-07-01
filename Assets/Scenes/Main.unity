@@ -9888,7 +9888,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 398609744}
   m_Direction: 0
   m_MinValue: 0.0001
-  m_MaxValue: 0.6
+  m_MaxValue: 0.5
   m_WholeNumbers: 0
   m_Value: 0.0001
   m_OnValueChanged:
@@ -10186,6 +10186,9 @@ MonoBehaviour:
   menu: {fileID: 8300000, guid: 1db890de7b5fccd45a84c248d6213ade, type: 3}
   background1: {fileID: 8300000, guid: 9aa329d00b878a34c9dd3390b51e1c04, type: 3}
   button: {fileID: 8300000, guid: 8ca17bf0c4dd3f044bb5e3db8ebdd724, type: 3}
+  pain: {fileID: 8300000, guid: 6297324ed6f00d44e80649e0f58be4bb, type: 3}
+  jump: {fileID: 8300000, guid: 78124e9a6629ef9459ea474c521431bb, type: 3}
+  slide: {fileID: 8300000, guid: f49a8fc51d3fecb4f8c4eee4cdc2165a, type: 3}
   doorLocked: {fileID: 8300000, guid: 2d0d622a537f3ae448273b7c7f99367c, type: 3}
   doorOpen: {fileID: 8300000, guid: bc28d1eb7a0237f44808da57e1839658, type: 3}
   chest: {fileID: 8300000, guid: 4bc79083c85ad23488196172f48419b3, type: 3}
@@ -12059,6 +12062,10 @@ PrefabInstance:
       propertyPath: goldText
       value: 
       objectReference: {fileID: 92419601}
+    - target: {fileID: 6348480246716600733, guid: 9e5c31df40c794fd48af5fa1eb2dcbea, type: 3}
+      propertyPath: wallJumpTime
+      value: 0.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6348480247018010743, guid: 9e5c31df40c794fd48af5fa1eb2dcbea, type: 3}
       propertyPath: m_RootOrder
       value: 1

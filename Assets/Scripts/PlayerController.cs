@@ -93,6 +93,7 @@ public class PlayerController : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Space) && extraJumps > 0)
             {
                 rb.velocity = Vector2.up * jumpForce;
+                SoundManager.Instance.PlayOneShot("Jump");
                 extraJumps--;
             }
             else if (Input.GetKeyDown(KeyCode.Space) && extraJumps == 0 && isGrounded)
@@ -128,13 +129,11 @@ public class PlayerController : MonoBehaviour
                 rb.velocity = new Vector2(rb.velocity.x, Mathf.Clamp(rb.velocity.y, -wallSlidingSpeed, float.MaxValue));
 
             //WallJump
-
             if (Input.GetKeyDown(KeyCode.Space) && wallSliding)
             {
                 wallJumping = true;
                 anim.SetBool("isClimbing", true);
                 Invoke("SetWallJumpingToFalse", wallJumpTime);
-               
             }
 
             if (wallJumping) rb.velocity = new Vector2(xWallForce * -moveInput, yWallForce);
@@ -152,7 +151,6 @@ public class PlayerController : MonoBehaviour
 
             moveInput = Input.GetAxis("Horizontal");
             rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
-
 
             if (!facingRight && moveInput > 0)
                 Flip();
@@ -216,7 +214,7 @@ public class PlayerController : MonoBehaviour
     private void SetWallJumpingToFalse()
     {
         wallJumping = false;
-        anim.SetBool("isClimbing",  false);
+        anim.SetBool("isClimbing", false);
     }
 
     private void Slide()
@@ -232,12 +230,15 @@ public class PlayerController : MonoBehaviour
         else
             rb.AddForce(Vector2.left * slideSpeed);
 
-        StartCoroutine("stopSlide");
+        SoundManager.Instance.PlayOneShot("Slide");
+
+        StartCoroutine(StopSlide());
     }
 
-    private IEnumerator stopSlide()
+    private IEnumerator StopSlide()
     {
         yield return new WaitForSeconds(maxSlideTime);
+        SoundManager.Instance.PlayOneShot("Slide");
         anim.Play("Idle");
         anim.SetBool("isSlide", false);
         regularColl.enabled = true;

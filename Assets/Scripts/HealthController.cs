@@ -73,6 +73,8 @@ public class HealthController : MonoBehaviour
 
     public void Hurt()
     {
+        SoundManager.Instance.PlayOneShot("Pain");
+        
         //Hurt Animation
         var spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         DOTween.Sequence()
