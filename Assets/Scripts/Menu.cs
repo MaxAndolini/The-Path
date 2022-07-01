@@ -143,7 +143,7 @@ public class Menu : MonoBehaviour
     {
         UnPause();
         gameOverMenu.SetActive(false);
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         PlayerController.Instance.Reset();
         SoundManager.Instance.PlayMusic("Background1");
     }

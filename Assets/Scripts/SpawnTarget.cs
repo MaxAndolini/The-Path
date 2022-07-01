@@ -1,20 +1,18 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnTarget : MonoBehaviour
 {
     public Transform startPoint;
     public GameObject sphere;
-    private float betweenTime;
     public float startTimeBetween;
-    void Start()
+    private float betweenTime;
+
+    private void Start()
     {
         betweenTime = startTimeBetween;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (betweenTime <= 0)
         {

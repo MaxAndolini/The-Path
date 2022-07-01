@@ -193,7 +193,7 @@ public class PlayerController : MonoBehaviour
                 {
                     ChangeKey(false);
                     var active = SceneManager.GetActiveScene().buildIndex;
-                    if (active == 3)
+                    if (active == 4)
                     {
                         Menu.Instance.GameOver(true);
                     }
