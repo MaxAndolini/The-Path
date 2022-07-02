@@ -53,14 +53,14 @@ public class Menu : MonoBehaviour
     public void Logo()
     {
         mySequence1 = DOTween.Sequence();
-        mySequence1.Append(logo1.transform.DOLocalMoveX(-95f, 2f));
-        mySequence1.Append(logo1.transform.DOLocalMoveX(-246f, 2f));
+        mySequence1.Append(logo1.transform.DOLocalMoveX(-350f, 2f));
+        mySequence1.Append(logo1.transform.DOLocalMoveX(-280f, 2f));
         mySequence1.SetUpdate(true);
         mySequence1.SetLoops(-1);
 
         mySequence2 = DOTween.Sequence();
-        mySequence2.Append(logo2.transform.DOLocalMoveX(95f, 2f));
-        mySequence2.Append(logo2.transform.DOLocalMoveX(158f, 2f));
+        mySequence2.Append(logo2.transform.DOLocalMoveX(263f, 2f));
+        mySequence2.Append(logo2.transform.DOLocalMoveX(193f, 2f));
         mySequence2.SetUpdate(true);
         mySequence2.SetLoops(-1);
     }
