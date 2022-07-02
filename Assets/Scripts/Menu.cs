@@ -45,6 +45,17 @@ public class Menu : MonoBehaviour
         Main();
     }
 
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeSelf)
+                UnPause();
+            else
+                Pause();
+        }
+    }
+
     public void PauseGame(bool status)
     {
         Time.timeScale = status ? 0 : 1;
@@ -76,6 +87,7 @@ public class Menu : MonoBehaviour
 
     public void Play()
     {
+        SoundManager.Instance.PlayOneShot("Button");
         mainMenu.SetActive(false);
         mySequence1.Pause();
         mySequence2.Pause();
@@ -139,11 +151,13 @@ public class Menu : MonoBehaviour
 
     public void Quit()
     {
+        SoundManager.Instance.PlayOneShot("Button");
         Application.Quit();
     }
 
     public void Restart()
     {
+        SoundManager.Instance.PlayOneShot("Button");
         UnPause();
         gameOverMenu.SetActive(false);
         var scene = 1;
@@ -156,6 +170,7 @@ public class Menu : MonoBehaviour
 
     public void MainMenu()
     {
+        SoundManager.Instance.PlayOneShot("Button");
         pauseMenu.SetActive(false);
         gameOverMenu.SetActive(false);
         SceneManager.LoadScene(1);
