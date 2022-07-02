@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class Menu : MonoBehaviour
 {
     public bool gamePause;
+    public bool gameFinish;
     public GameObject logo1;
     public GameObject logo2;
     public GameObject mainMenu;
@@ -115,8 +116,9 @@ public class Menu : MonoBehaviour
     public void GameOver(bool h)
     {
         PauseGame(true);
-        SoundManager.Instance.PlayOneShot((h) ? "Win" : "Lose");
-        gameOverText.text = (h) ? "YOU WIN" : "GAME OVER";
+        gameFinish = h;
+        SoundManager.Instance.PlayOneShot(h ? "Win" : "Lose");
+        gameOverText.text = h ? "YOU WIN" : "GAME OVER";
         gameOverGold.text = PlayerController.Instance.gold.ToString();
         gameOverMenu.SetActive(true);
     }
@@ -144,7 +146,10 @@ public class Menu : MonoBehaviour
     {
         UnPause();
         gameOverMenu.SetActive(false);
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        var scene = 1;
+        if (!gameFinish) scene = SceneManager.GetActiveScene().buildIndex;
+        gameFinish = false;
+        SceneManager.LoadScene(scene);
         PlayerController.Instance.Reset();
         SoundManager.Instance.PlayMusic("Background1");
     }
