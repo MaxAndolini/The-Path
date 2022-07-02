@@ -147,7 +147,7 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.Instance.PlayOneShot("Walk");
 
-                walkTime -= 0.5f;
+                walkTime = Time.deltaTime;
             }
 
             slideTime += Time.deltaTime;
@@ -156,7 +156,7 @@ public class PlayerController : MonoBehaviour
             {
                 SoundManager.Instance.PlayOneShot("Slide");
 
-                slideTime -= 0.6f;
+                slideTime = Time.deltaTime;
             }
 
             Animations();

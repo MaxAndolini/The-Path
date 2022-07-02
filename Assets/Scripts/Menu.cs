@@ -42,7 +42,7 @@ public class Menu : MonoBehaviour
 
         SoundManager.Instance.PlayMusic("Menu");
         Logo();
-        Main();
+        Main(false);
     }
 
     private void Update()
@@ -77,8 +77,9 @@ public class Menu : MonoBehaviour
         mySequence2.SetLoops(-1);
     }
 
-    public void Main()
+    public void Main(bool h)
     {
+        if (h) SoundManager.Instance.PlayOneShot("Button");
         mainMenu.SetActive(true);
         main.SetActive(true);
         instructions.SetActive(false);
@@ -178,7 +179,7 @@ public class Menu : MonoBehaviour
         mySequence1.Play();
         mySequence2.Play();
         SoundManager.Instance.PlayMusic("Menu");
-        Main();
+        Main(false);
     }
 
     public void SetMusicVolume(float musicVolume)
