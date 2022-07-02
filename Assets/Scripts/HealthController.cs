@@ -12,7 +12,7 @@ public class HealthController : MonoBehaviour
     public GameObject[] hearth;
 
     [Space] [Header("Blue Potion")] public GameObject bluePotion;
-    public float bluePotionTimeRemaining = 10;
+    public float bluePotionTimeRemaining = 5;
     private float bluePotionCurrentTime;
     private bool bluePotionIsRunning;
     private Text bluePotionText;
